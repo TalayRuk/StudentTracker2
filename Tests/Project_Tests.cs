@@ -7,9 +7,9 @@ using Epicodus;
 
 namespace Tests
 {
-  public class Testing : IDisposable
+  public class Project_Tests : IDisposable
   {
-    public ToDoTest()
+    public Project_Tests()
     {
       string dataSource = "Data Source=(localdb)\\mssqllocaldb"; // Data Source identifies the server.
       string databaseName = "epicodus_test"; // Initial Catalog is the database name

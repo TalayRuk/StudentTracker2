@@ -15,7 +15,10 @@
 + The site does not need a login screen, unless there is extra time..
 + If extra time we can add another table for teachers.
 
-###### Epicodus Database VIEW
+###### Epicodus Database NEW
+![Epicodus Database](Content/img/EpicodusDataBasePicture.png "Epicodus Database Updated")
+
+###### Epicodus Database OLD
 ![Epicodus Database](Content/img/tables.png "Epicodus Database")
 
 ###### Epicodus Database SQL

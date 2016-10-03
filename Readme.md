@@ -4,8 +4,8 @@
 + I need to be able to enter students. I need to be able to enter a student's first name, last name, date they started the program, email address, and a link to their picture.
 + I need to be able to enter in courses, including the name and start date of the course, and if the course is active.  Notice that the design of courses is that there would be an "Intro to Programming: June" and an "Intro to Programming: August."
 + I need to be able to add student Friday projects.  Each project should have a name and due date.
++ I need to be able to Find, FindAll, DeleteAll, Save, Update, and Delete (FULL CRUD) for students, courses, and student projects.
 + I need to be able to view all students, all courses, and all projects.
-+ I need to be able to add, change, and delete student projects.
 + When I click a specific student, I would like to see all their information, the courses that they took, and the grades they received in that course.
 + When I click a specific course, I would like to see the students, the grades of each student in the course, and the overall course average grade.
 + When I click a specific project, I would like to see all the grade for that course for any student who had taken the course, and the overall project grade average.

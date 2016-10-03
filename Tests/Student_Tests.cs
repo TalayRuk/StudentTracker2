@@ -73,6 +73,24 @@ namespace Tests
       Assert.Equal(testId, result);
     }
 
+    [Fact]
+    public void T5_Find()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
+
+      //Act
+      Student result = Student.Find(student1.GetId());
+
+      //Assert
+      Assert.Equal(student1, result);
+    }
+
+    [Fact]
+
+
     public void Dispose()
     {
       Student.DeleteAll();

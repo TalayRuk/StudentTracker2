@@ -134,6 +134,55 @@ namespace Epicodus
       }
     }
 
+    public static Student Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM students WHERE id = @id;", conn);
+
+      cmd.Parameters.Add(new SqlParameter("@id", id));
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int studentId = 0;
+      string firstName = null;
+      string lastName = null;
+      string email = null;
+      string picture = null;
+      DateTime defaultDate = new DateTime (2016, 08, 01);
+
+      while (rdr.Read())
+      {
+        studentId = rdr.GetInt32(0);
+        firstName = rdr.GetString(1);
+        lastName = rdr.GetString(2);
+        email = rdr.GetString(3);
+        picture = rdr.GetString(4);
+        defaultDate = rdr.GetDateTime(5);
+
+      }
+      Student foundStudent = new Student(firstName, lastName, email, picture, defaultDate, studentId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundStudent;
+    }
+
+    // public void Update(string firstName, string lastName, string email, string picture, DateTime startDate, int id = 0)
+    // {
+    //   SqlConnection conn = DB.Connection();
+    //   conn.Open();
+    //
+    //   SqlCommand cmd = new SqlCommand("UPDATE students SET (fname = @fname, lname = @lname, email = @email, picture = @picture, sdate = @sDate) OUTPUT INSERTED.name ")
+    // }
+
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

@@ -13,7 +13,7 @@
   **This is important:** _one way to do this project is to have one master join table query that SELECT the entire table and then we can use javascript to display the table. Then we can send this one table through the model._
 + The site does not need a login screen, unless there is extra time..
 ###### Epicodus Database VIEW
-![Epicodus Database](tables.png "Epicodus Database")
+![Epicodus Database](Content/img/tables.png "Epicodus Database")
 
 ###### Epicodus Database SQL
 ```sql

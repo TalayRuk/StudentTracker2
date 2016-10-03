@@ -25,10 +25,9 @@
 ```sql
 
 
-CREATE DATABASE epicodus;
-GO
-USE epicodus;
-GO
+CREATE DATABASE epicodus
+
+USE epicodus
 
 DROP TABLE IF EXISTS students;
 
@@ -42,39 +41,82 @@ CREATE TABLE students (
   PRIMARY KEY (id)
 );
 
+-- ---
+-- Table 'courses'
+--
+-- ---
+
 DROP TABLE IF EXISTS courses;
 
 CREATE TABLE courses (
   id INTEGER NOT NULL IDENTITY(1,1),
   name VARCHAR(255) NULL DEFAULT NULL,
   sdate DATE NOT NULL,
-  active TINYINT NULL DEFAULT NULL,
+  active INTEGER NULL DEFAULT NULL,
   PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS project;
+-- ---
+-- Table 'projects'
+--
+-- ---
 
-CREATE TABLE project (
+DROP TABLE IF EXISTS projects;
+
+CREATE TABLE projects (
   id INTEGER NOT NULL IDENTITY(1,1),
   name VARCHAR(255) NULL DEFAULT NULL,
   date DATE NOT NULL,
   PRIMARY KEY (id)
 );
 
+-- ---
+-- Table 'students_courses'
+--
+-- ---
+
+DROP TABLE IF EXISTS students_courses;
+
+CREATE TABLE students_courses (
+  id INTEGER NOT NULL IDENTITY(1,1),
+  student_id INTEGER NULL DEFAULT NULL,
+  class_id INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+-- ---
+-- Table 'scg'
+--
+-- ---
+
 DROP TABLE IF EXISTS scg;
 
 CREATE TABLE scg (
   id INTEGER NOT NULL IDENTITY(1,1),
-  student_id INTEGER NULL DEFAULT NULL,
-  class_id INTEGER NULL DEFAULT NULL,
-  project_id INTEGER NULL DEFAULT NULL,
-  grade INTEGER NULL DEFAULT NULL,
+  students_courses_id INTEGER NULL DEFAULT NULL,
+  projects_id INTEGER NULL DEFAULT NULL,
+  grade VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (id)
 );
 
-ALTER TABLE scg ADD FOREIGN KEY (student_id) REFERENCES students (id);
-ALTER TABLE scg ADD FOREIGN KEY (class_id) REFERENCES courses (id);
-ALTER TABLE scg ADD FOREIGN KEY (project_id) REFERENCES project (id);
+-- ---
+-- Foreign Keys
+-- ---
+
+ALTER TABLE students_courses ADD FOREIGN KEY (student_id) REFERENCES students (id);
+ALTER TABLE students_courses ADD FOREIGN KEY (class_id) REFERENCES courses (id);
+ALTER TABLE scg ADD FOREIGN KEY (students_courses_id) REFERENCES students_courses (id);
+ALTER TABLE scg ADD FOREIGN KEY (projects_id) REFERENCES projects (id);
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE students ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE courses ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE project ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE students_courses ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE scg ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ---
 -- Test Data
@@ -84,8 +126,10 @@ ALTER TABLE scg ADD FOREIGN KEY (project_id) REFERENCES project (id);
 -- ('','','','','','');
 -- INSERT INTO courses (id,name,sdate,active) VALUES
 -- ('','','','');
--- INSERT INTO project (id,name,date) VALUES
+-- INSERT INTO projects (id,name,date) VALUES
 -- ('','','');
--- INSERT INTO scg (id,student_id,class_id,project_id,grade) VALUES
--- ('','','','','');
+-- INSERT INTO students_courses (id,student_id,class_id) VALUES
+-- ('','','');
+-- INSERT INTO scg (id,students_courses_id,projects_id,grade) VALUES
+-- ('','','','');
 ```

@@ -6,13 +6,14 @@
 + I need to be able to add student Friday projects.  Each project should have a name and due date.
 + I need to be able to Find, FindAll, DeleteAll, Save, Update, and Delete (FULL CRUD) for students, courses, and student projects.
 + I need to be able to view all students, all courses, and all projects.
++ I need to be able to add a grade for an student taking a course for a project. (_I recommend we add this method to the class Project only_).
 + When I click a specific student, I would like to see all their information, the courses that they took, and the grades they received in that course.
 + When I click a specific course, I would like to see the students, the grades of each student in the course, and the overall course average grade.
 + When I click a specific project, I would like to see all the grade for that course for any student who had taken the course, and the overall project grade average.
 
   **This is important:** _one way to do this project is to have one master join table query that SELECT the entire table and then we can use javascript to display the table. Then we can send this one table through the model._
 + The site does not need a login screen, unless there is extra time..
-
++ If extra time we can add another table for teachers.
 
 ###### Epicodus Database VIEW
 ![Epicodus Database](Content/img/tables.png "Epicodus Database")

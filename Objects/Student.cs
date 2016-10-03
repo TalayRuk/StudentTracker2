@@ -104,9 +104,47 @@ namespace Epicodus
       }
       return allStudents;
     }
-    // public void Save()
-    // {
-    //
-    // }
+
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO students (fname, lname, email, picture, sdate) OUTPUT INSERTED.id VALUES (@fname, @lname, @email, @picture, @sDate);", conn);
+
+      cmd.Parameters.Add(new SqlParameter("@fname", this.GetFName()));
+      cmd.Parameters.Add(new SqlParameter("@lname", this.GetLName()));
+      cmd.Parameters.Add(new SqlParameter("@email", this.GetEmail()));
+      cmd.Parameters.Add(new SqlParameter("@picture", this.GetPicture()));
+      cmd.Parameters.Add(new SqlParameter("@sDate", this.GetStartDate()));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        _id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM students;", conn);
+      cmd.ExecuteNonQuery();
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
   }
 }

@@ -31,17 +31,51 @@ namespace Tests
     public void T2_OverrideBool()
     {
       //Arrange, Act
-      DateTime sDate = new DateTime (2016, 08, 01);
-      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", sDate);
-      Student student2 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", sDate);
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      Student student2 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
 
       //Assert
       Assert.Equal(student1, student2);
     }
 
+    [Fact]
+    public void T3_SaveToDb()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+
+      //Act
+      student1.Save();
+      List<Student> result = Student.GetAll();
+      List<Student> testList = new List<Student> {student1};
+
+      //Assert
+      Assert.Equal(testList, result);
+    }
+
+    [Fact]
+    public void T4_SaveToId()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
+
+      //Act
+      Student savedId = Student.GetAll()[0];
+
+      int result = savedId.GetId();
+      int testId = student1.GetId();
+
+      //Assert
+      Assert.Equal(testId, result);
+    }
+
     public void Dispose()
     {
-      // Item.DeleteAll();
+      Student.DeleteAll();
     }
   }
 }

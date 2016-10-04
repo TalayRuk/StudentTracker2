@@ -228,63 +228,62 @@ namespace Epicodus
       }
     }
 
-    // public void AddCourse(Course newCourse)
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //
-    //   SqlCommand cmd = new SqlCommand("INSERT INTO students_courses (student_id, class_id) VALUES (@studentId, @classId);", conn);
-    //
-    //   cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
-    //   cmd.Parameters.Add(new SqlParameter("@classId", newCourse.GetId()));
-    //   cmd.ExecuteNonQuery();
-    //
-    //
-    //   conn.Close();
-    //
-    // }
-    //
-    // public List<Course> GetCourses()
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //
-    //   SqlCommand cmd = new SqlCommand("SELECT courses.* FROM students JOIN students_courses ON students.id = students_courses.student_id JOIN courses ON (courses.id =  students_courses.class_id) WHERE students.id = @studentId;", conn);
-    //
-    //   cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId())); //*when error cannot convert from 'int' to 'System.Data.SqlClient.SqlConnection b/c**SqlParameter spell wrong!
-    //   Console.WriteLine(this.GetId() );
-    //   SqlDataReader rdr = cmd.ExecuteReader();
-    //
-    //   List<Course> coursesList = new List<Course> {};
-    //
-    //   while ( rdr.Read() );
-    //   {
-    //     int courseId = rdr.GetInt32(0);
-    //     string name = rdr.GetString(1);
-    //     DateTime sdate = rdr.GetDateTime(2);
-    //     int active = rdr.GetInt32(3);
-    //     Course newCourse = new Course(name, sdate, active, courseId);
-    //     coursesList.Add(newCourse);
-    //   }
-    //   return coursesList;
-    // }
+    public void AddCourse(Course newCourse)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
 
-    // public static void DeleteCourse(int studentId, int classId )
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //
-    //   SqlCommand cmd = new SqlCommand("DELETE FROM students_courses WHERE student_id = @studentId AND class_id = @classId;", conn);
-    //
-    //   cmd.Parameters.Add(new SqlParameter("@studentId", studentId));
-    //   cmd.Parameters.Add(new SqlParameter("@classId", classId));
-    //   cmd.ExecuteNonQuery();
-    //
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    // }
+      SqlCommand cmd = new SqlCommand("INSERT INTO students_courses (student_id, class_id) VALUES (@studentId, @classId);", conn);
+
+      cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
+      cmd.Parameters.Add(new SqlParameter("@classId", newCourse.GetId()));
+      cmd.ExecuteNonQuery();
+
+
+      conn.Close();
+
+    }
+
+    public List<Course> GetCourses()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT courses.* FROM students JOIN students_courses ON students.id = students_courses.student_id JOIN courses ON courses.id = students_courses.class_id WHERE students.id = @studentId;", conn);
+
+      cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId())); //*when error cannot convert from 'int' to 'System.Data.SqlClient.SqlConnection b/c**SqlParameter spell wrong!
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Course> coursesList = new List<Course> {};
+
+      while ( rdr.Read() )
+      {
+        int courseId = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        DateTime sdate = rdr.GetDateTime(2);
+        int active = rdr.GetInt32(3);
+        Course newCourse = new Course(name, sdate, active, courseId);
+        coursesList.Add(newCourse);
+      }
+      return coursesList;
+    }
+
+    public void DeleteCourse( int classId )
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM students_courses WHERE student_id = @studentId AND class_id = @classId;", conn);
+
+      cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId() ) );
+      cmd.Parameters.Add(new SqlParameter("@classId", classId));
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
 
     public static void DeleteAll()
     {

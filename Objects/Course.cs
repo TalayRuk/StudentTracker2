@@ -101,7 +101,6 @@ namespace Epicodus
       return allCourses;
     }
 
-
     public void Save()
     {
       SqlConnection conn = DB.Connection();

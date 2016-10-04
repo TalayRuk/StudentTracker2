@@ -178,7 +178,6 @@ namespace Epicodus
     // public void Update(string firstName, string lastName, string email, string picture, DateTime startDate, int id = 0)
     public void UpdateAll(Student currentStudent)
     {//-->get error cannot implicitly convert type 'void'
-    //-->static void .. error CS0176: Member 'Student.UpdateAll(Student)' cannot be accessed with an instance reference; qualify it with a type name instead
 
       // this;
       // currentStudent;
@@ -186,18 +185,18 @@ namespace Epicodus
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE students SET fname = @fname, lname = @lname, email = @email, picture = @picture, sdate = @sDate OUTPUT INSERTED.fname, INSERTED.lname, INSERTED.email, INSERTED.picture, INSERTED.sdate WHERE id = @StudentId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE students SET fname = @fname, lname = @lname, email = @email, picture = @picture, sdate = @sDate OUTPUT INSERTED.fname, INSERTED.lname, INSERTED.email, INSERTED.picture, INSERTED.sdate WHERE id = @studentId;", conn);
 // CMD is already diffined in this scope - try googling long string update / multiple collums
       cmd.Parameters.Add(new SqlParameter("@fname", currentStudent.GetFName()));
       cmd.Parameters.Add(new SqlParameter("@lname", currentStudent.GetLName()));
       cmd.Parameters.Add(new SqlParameter("@email", currentStudent.GetEmail()));
       cmd.Parameters.Add(new SqlParameter("@picture", currentStudent.GetPicture()));
       cmd.Parameters.Add(new SqlParameter("@sDate", currentStudent.GetStartDate()));
-      cmd.Parameters.Add(new SqlParameter("@StudentId", currentStudent.GetId()));
+      cmd.Parameters.Add(new SqlParameter("@studentId", currentStudent.GetId()));
       SqlDataReader rdr = cmd.ExecuteReader();
 
       while(rdr.Read())
-      {
+      {//the index number is according to OUTPUT INSERTED. ....
         this._firstName = rdr.GetString(0);
         this._lastName = rdr.GetString(1);
         this._email = rdr.GetString(2);
@@ -214,10 +213,85 @@ namespace Epicodus
       }
     }
 
+    public void DeleteOne()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM students WHERE id = @studentId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    // public void AddCourse(Course newCourse)
+    // {
+    //   SqlConnection conn = DB.Connection();
+    //   conn.Open();
+    //
+    //   SqlCommand cmd = new SqlCommand("INSERT INTO students_courses (student_id, class_id) VALUES (@studentId, @classId);", conn);
+    //
+    //   cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
+    //   cmd.Parameters.Add(new SqlParameter("@classId", newCourse.GetId()));
+    //   cmd.ExecuteNonQuery();
+    //
+    //
+    //   conn.Close();
+    //
+    // }
+    //
+    // public List<Course> GetCourses()
+    // {
+    //   SqlConnection conn = DB.Connection();
+    //   conn.Open();
+    //
+    //   SqlCommand cmd = new SqlCommand("SELECT courses.* FROM students JOIN students_courses ON students.id = students_courses.student_id JOIN courses ON (courses.id =  students_courses.class_id) WHERE students.id = @studentId;", conn);
+    //
+    //   cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId())); //*when error cannot convert from 'int' to 'System.Data.SqlClient.SqlConnection b/c**SqlParameter spell wrong!
+    //   Console.WriteLine(this.GetId() );
+    //   SqlDataReader rdr = cmd.ExecuteReader();
+    //
+    //   List<Course> coursesList = new List<Course> {};
+    //
+    //   while ( rdr.Read() );
+    //   {
+    //     int courseId = rdr.GetInt32(0);
+    //     string name = rdr.GetString(1);
+    //     DateTime sdate = rdr.GetDateTime(2);
+    //     int active = rdr.GetInt32(3);
+    //     Course newCourse = new Course(name, sdate, active, courseId);
+    //     coursesList.Add(newCourse);
+    //   }
+    //   return coursesList;
+    // }
+
+    // public static void DeleteCourse(int studentId, int classId )
+    // {
+    //   SqlConnection conn = DB.Connection();
+    //   conn.Open();
+    //
+    //   SqlCommand cmd = new SqlCommand("DELETE FROM students_courses WHERE student_id = @studentId AND class_id = @classId;", conn);
+    //
+    //   cmd.Parameters.Add(new SqlParameter("@studentId", studentId));
+    //   cmd.Parameters.Add(new SqlParameter("@classId", classId));
+    //   cmd.ExecuteNonQuery();
+    //
+    //   if (conn != null)
+    //   {
+    //     conn.Close();
+    //   }
+    // }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
+      SqlCommand cmd1 = new SqlCommand("DELETE FROM students_courses;", conn);
+      cmd1.ExecuteNonQuery();
 
       SqlCommand cmd = new SqlCommand("DELETE FROM students;", conn);
       cmd.ExecuteNonQuery();

@@ -96,7 +96,7 @@ namespace Tests
       Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
       student1.Save();
 
-      Student currentStudent = new Student( "Jon", "Jone", "jonJone@gmail.com", "/img/jon.jpg", Date1, student1.GetId() );
+      Student currentStudent = new Student( "Jon", "Jone", "jonJone@gmail.com", "/img/jon.jpg", Date1, student1.GetId());
       //Act
       student1.UpdateAll(currentStudent);
       //  student1.UpdateAll(currentStudent);
@@ -105,9 +105,102 @@ namespace Tests
       Assert.Equal(currentStudent, student1);
     }
 
+    [Fact]
+    public void T7_DeleteOne()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
+
+      Student student2 = new Student("Jonny", "Jone", "jonjon@Jone.com", "/img/jonny.jpg", Date1);
+      student2.Save();
+
+      //Act
+      student2.DeleteOne();
+      List<Student> result = Student.GetAll();
+      List<Student> test = new List<Student> {student1};
+
+      //Assert
+      Assert.Equal(test, result);
+    }
+
+    // [Fact]
+    // public void T8_AddCourse()
+    // {
+    //   //Arrange
+    //   //Arrange
+    //   DateTime Date1 = new DateTime (2016, 08, 01);
+    //   Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+    //   student1.Save();
+    //
+    //   Course course1 = new Course("Intro", Date1, 1);
+    //   course1.Save();
+    //   Course course2 = new Course("JavaScript", Date1, 1);
+    //   course2.Save();
+    //
+    //   //Act
+    //   student1.AddCourse(course1);
+    //   student1.AddCourse(course2);
+    //
+    //   List<Course> result = student1.GetCourses();
+    //   List<Course> test = new List<Course> {course1, course2};
+    //
+    //   //Assert
+    //   Assert.Equal(test, result);
+    //
+    // }
+    //
+    // [Fact]
+    // public void T9_GetCourses()
+    // {
+    //   //Arrange
+    //   DateTime Date1 = new DateTime (2016, 08, 01);
+    //   Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+    //   student1.Save();
+    //
+    //   Course course1 = new Course("Intro", Date1, 1);
+    //   course1.Save();
+    //   Course course2 = new Course("JavaScript", Date1, 1);
+    //   course2.Save();
+    //
+    //
+    //   //Act
+    //   student1.AddCourse(course1);
+    //
+    //   List<Course> result = student1.GetCourses();
+    //   List<Course> test = new List<Course> {course1};
+    //
+    //   //Assert
+    //   Assert.Equal(test, result);
+    // }
+
+    // [Fact]
+    // public void T8_DeleteCourse()
+    // {
+    //   //Assert
+    //   DateTime Date1 = new DateTime (2016, 08, 01);
+    //   Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+    //   student1.Save();
+    //
+    //   Course testCourse = new Course("Intro", Date1, 1);
+    //   testCourse.Save();
+    //
+    //   //Act
+    //   student1.AddCourse(testCourse);
+    //   student1.DeleeteCourse(student1.GetId(), testCourse.GetId());
+    //   List<Student> result = testCourse.GetCourses();
+    //
+    //   //Assert
+    //   Assert.Equal(0, result);
+    // }
+
+
     public void Dispose()
     {
       Student.DeleteAll();
+      Course.DeleteAll();
+      // Project.DeleteAll();
     }
   }
 }

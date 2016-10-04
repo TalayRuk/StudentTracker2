@@ -89,7 +89,21 @@ namespace Tests
     }
 
     [Fact]
+    public void T6_UpdateAll()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
 
+      Student currentStudent = new Student( "Jon", "Jone", "jonJone@gmail.com", "/img/jon.jpg", Date1, student1.GetId() );
+      //Act
+      student1.UpdateAll(currentStudent);
+      //  student1.UpdateAll(currentStudent);
+      // static void .. error CS0176: Member 'Student.UpdateAll(Student)' cannot be accessed with an instance reference; qualify it with a type name instead
+      //Assert
+      Assert.Equal(currentStudent, student1);
+    }
 
     public void Dispose()
     {
@@ -97,3 +111,13 @@ namespace Tests
     }
   }
 }
+// Update
+// string name = "A place";
+//       Venue testVenue = new Venue(name);
+//       testVenue.Save();
+//       string newName = "B place";
+//
+//       //Act
+//       testVenue.Update(newName);
+//
+//       string result = testVenue.GetName();

@@ -178,7 +178,6 @@ namespace Epicodus
     // public void Update(string firstName, string lastName, string email, string picture, DateTime startDate, int id = 0)
     public void UpdateAll(Student currentStudent)
     {//-->get error cannot implicitly convert type 'void'
-    //-->static void .. error CS0176: Member 'Student.UpdateAll(Student)' cannot be accessed with an instance reference; qualify it with a type name instead
 
       // this;
       // currentStudent;
@@ -186,18 +185,18 @@ namespace Epicodus
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE students SET fname = @fname, lname = @lname, email = @email, picture = @picture, sdate = @sDate OUTPUT INSERTED.fname, INSERTED.lname, INSERTED.email, INSERTED.picture, INSERTED.sdate WHERE id = @StudentId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE students SET fname = @fname, lname = @lname, email = @email, picture = @picture, sdate = @sDate OUTPUT INSERTED.fname, INSERTED.lname, INSERTED.email, INSERTED.picture, INSERTED.sdate WHERE id = @studentId;", conn);
 // CMD is already diffined in this scope - try googling long string update / multiple collums
       cmd.Parameters.Add(new SqlParameter("@fname", currentStudent.GetFName()));
       cmd.Parameters.Add(new SqlParameter("@lname", currentStudent.GetLName()));
       cmd.Parameters.Add(new SqlParameter("@email", currentStudent.GetEmail()));
       cmd.Parameters.Add(new SqlParameter("@picture", currentStudent.GetPicture()));
       cmd.Parameters.Add(new SqlParameter("@sDate", currentStudent.GetStartDate()));
-      cmd.Parameters.Add(new SqlParameter("@StudentId", currentStudent.GetId()));
+      cmd.Parameters.Add(new SqlParameter("@studentId", currentStudent.GetId()));
       SqlDataReader rdr = cmd.ExecuteReader();
 
       while(rdr.Read())
-      {
+      {//the index number is according to OUTPUT INSERTED. ....
         this._firstName = rdr.GetString(0);
         this._lastName = rdr.GetString(1);
         this._email = rdr.GetString(2);
@@ -212,6 +211,22 @@ namespace Epicodus
       {
         conn.Close();
       }
+    }
+
+    public void DeleteOne()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM students WHERE id = @studentId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+
     }
 
     public static void DeleteAll()

@@ -96,7 +96,7 @@ namespace Tests
       Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
       student1.Save();
 
-      Student currentStudent = new Student( "Jon", "Jone", "jonJone@gmail.com", "/img/jon.jpg", Date1, student1.GetId() );
+      Student currentStudent = new Student( "Jon", "Jone", "jonJone@gmail.com", "/img/jon.jpg", Date1, student1.GetId());
       //Act
       student1.UpdateAll(currentStudent);
       //  student1.UpdateAll(currentStudent);
@@ -104,6 +104,27 @@ namespace Tests
       //Assert
       Assert.Equal(currentStudent, student1);
     }
+
+    [Fact]
+    public void T7_DeleteOne()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
+
+      Student student2 = new Student("Jonny", "Jone", "jonjon@Jone.com", "/img/jonny.jpg", Date1);
+      student2.Save();
+
+      //Act
+      student2.DeleteOne();
+      List<Student> result = Student.GetAll();
+      List<Student> test = new List<Student> {student1};
+
+      //Assert
+      Assert.Equal(test, result);
+    }
+
 
     public void Dispose()
     {

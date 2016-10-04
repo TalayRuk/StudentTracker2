@@ -2,7 +2,7 @@
 
 $(function() {
 
-  $("table").stupidtable();
+  // $("#table").easyTable();
 
   //For Example popupoverlay
   $('#example_popup').popup({
@@ -14,8 +14,9 @@ $(function() {
 
   //For popup slider
   $('#slide').popup({
-  outline: true, // optional
+  outline: false, // optional
   focusdelay: 400, // optional
-  vertical: 'top' //optional
+  vertical: 'top', //optional
+  blur: true
   });
 });

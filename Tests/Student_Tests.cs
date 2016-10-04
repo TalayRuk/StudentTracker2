@@ -96,13 +96,13 @@ namespace Tests
       Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
       student1.Save();
 
-      Student currentStudent = new Student("Jon", "Jone", "jonJone@gmail.com", "/img/jon.jpg", Date1);
+      Student currentStudent = new Student( "Jon", "Jone", "jonJone@gmail.com", "/img/jon.jpg", Date1, student1.GetId() );
       //Act
-      Student updateStudent = Student.Update(currentStudent)
+      student1.UpdateAll(currentStudent);
       //  student1.UpdateAll(currentStudent);
       // static void .. error CS0176: Member 'Student.UpdateAll(Student)' cannot be accessed with an instance reference; qualify it with a type name instead
       //Assert
-      Assert.Equal(currentStudent, updateStudent);
+      Assert.Equal(currentStudent, student1);
     }
 
     public void Dispose()

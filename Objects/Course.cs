@@ -48,7 +48,7 @@ namespace Epicodus
       _active = active;
     }
     //
-    // public override bool Eqauls(System.Object otherCourse)
+    // public override bool Equals(System.Object otherCourse)
     // {
     //   if (!(otherCourse is Course)
     //   {

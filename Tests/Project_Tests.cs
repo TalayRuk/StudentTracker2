@@ -59,6 +59,20 @@ namespace Tests
       Assert.Equal(testProject, allProjects);
     }
 
+    [Fact]
+    public void Test_UpdateOneProject()
+    {
+      DateTime Date = new DateTime(2016,10,3);
+      Project testProject = new Project("ProjectName", Date);
+      testProject.Save();
+
+      DateTime Date2 = new DateTime(2017,10,3);
+      Project newProject = new Project("NewProjectName", Date2, testProject.GetId() );
+      testProject.Update(newProject);
+
+      Assert.Equal(testProject, newProject);
+    }
+
     public void Dispose()
     {
       Project.DeleteAll();

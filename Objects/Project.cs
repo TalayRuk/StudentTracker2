@@ -164,8 +164,33 @@ namespace Epicodus
       }
     }
 
+    public void Update(Project newProject)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("UPDATE projects SET name = @NewName, date = @Date OUTPUT INSERTED.name, INSERTED.date WHERE id = @Id;", conn);
 
+      cmd.Parameters.Add(new SqlParameter("@NewName", newProject.GetName() ));
+      cmd.Parameters.Add(new SqlParameter("@Date", newProject.GetDate() ));
+      cmd.Parameters.Add(new SqlParameter("@Id", newProject.GetId() ));
 
+      SqlDataReader rdr = cmd.ExecuteReader();
 
+      while(rdr.Read() )
+      {
+        this._name = rdr.GetString(0);
+        this._date = rdr.GetDateTime(1);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
   }
 }

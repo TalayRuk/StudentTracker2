@@ -1,4 +1,33 @@
 /**********************************
+***For Parralax
+***********************************/
+
+section.module.parallax {
+  height: 200px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+section.module.parallax h1 {
+  font-family: 'Permanent Marker', cursive;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 70px;
+  line-height: 400px;
+  font-weight: 700;
+  text-align: right;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+section.module.parallax-1 {
+  background-image: url("https://static1.squarespace.com/static/5524448ee4b0d6f6b83ab9e2/t/5554e1d9e4b0f33dbaf8d031/1431626275703/DSC00085.JPG?format=1500w");
+}
+
+
+
+/**********************************
 ***For Hero Image
 ***********************************/
 body{ margin:0px 0px; }
@@ -46,6 +75,9 @@ body{ margin:0px 0px; }
 #slide {
   transform: translateX(0) translateY(-40%);
   background-color: rgba(255,255,255,1);
+  border-radius: 40px;
+  margin: 40px;
+  padding: 20px;
 }
 .popup_visible #slide {
   transform: translateX(0) translateY(0);
@@ -59,11 +91,10 @@ body{ margin:0px 0px; }
   float: left;
 }
 
-
 /**********************************
 *** Table styling
 ***********************************/
-table {
+.stupid table {
 	background: #f5f5f5;
 	border-collapse: separate;
 	box-shadow: inset 0 1px 0 #fff;
@@ -74,7 +105,7 @@ table {
 	width: 300px;
 }
 
-th {
+.stupid th {
 	background: url(http://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);
 	border-left: 1px solid #555;
 	border-right: 1px solid #777;
@@ -88,7 +119,7 @@ th {
 	text-shadow: 0 1px 0 #000;
 }
 
-th:after {
+.stupid th:after {
 	background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.08));
 	content: '';
 	display: block;
@@ -100,16 +131,16 @@ th:after {
 	width: 100%;
 }
 
-th:first-child {
+.stupid th:first-child {
 	border-left: 1px solid #777;
 	box-shadow: inset 1px 1px 0 #999;
 }
 
-th:last-child {
+.stupid th:last-child {
 	box-shadow: inset -1px 1px 0 #999;
 }
 
-td {
+.stupid td {
 	border-right: 1px solid #fff;
 	border-left: 1px solid #e8e8e8;
 	border-top: 1px solid #fff;
@@ -117,4 +148,58 @@ td {
 	padding: 10px 15px;
 	position: relative;
 	transition: all 300ms;
+}
+
+/**********************************
+*** For easyTable
+***********************************/
+
+/*
+ Table plugin for jQuery
+ Copyright (c) 20016 Gabriel Rodrigues e Gabriel Leite (http://gabrielr47.github.io/)
+ Licensed under the MIT license
+ Version: 0.1
+*/
+
+.easyTable {
+  outline: none;
+}
+
+.easyTable tbody tr {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+#easyMenuTable button {
+  margin: 5px;
+  border-radius: 25px;
+  outline: none;
+}
+
+.easyTable thead {
+  cursor: pointer;
+  display: block;
+  margin: 0px;
+  cell-spacing: 0px;
+  left: 0px;
+}
+
+.easyTable tbody {
+  display: block;
+  overflow: auto;
+}
+
+.easyTable th {
+  height: 20px;
+  
+}
+
+.easyTable td {
+  height: 20px;
+  width: auto;
+  margin: 0px;
+  cell-spacing: 0px;
 }

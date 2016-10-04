@@ -133,3 +133,38 @@ ALTER TABLE scg ADD FOREIGN KEY (projects_id) REFERENCES projects (id);
 -- INSERT INTO scg (id,students_courses_id,projects_id,grade) VALUES
 -- ('','','','');
 ```
+
+Short Term Save
+
+INSERT INTO SCG (students_courses_id, projects_id, grade) VALUES (118, 33);
+
+Student student = new Student();
+student.Save();
+
+Course course = new Course();
+course.Save().;
+
+course.Add(student)
+
+Project project = new Project();
+project.Save();
+//ACT
+Project.Add(Student,Course, "Grade");
+
+public void Add(Student student, Course course, string grade)
+{
+OpenSQLCONN
+
+SELECT students_courses.id FROM students JOIN students_courses
+ON students.id = students_courses.student_id JOIN courses
+ON courses.id = students_courses.class_id
+WHERE students.id = 118;
+
+sql parameter student_id
+sql parameter course_ID
+WHile()
+
+
+ID
+
+INSERT INTO SCG (stu

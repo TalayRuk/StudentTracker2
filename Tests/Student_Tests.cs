@@ -89,11 +89,134 @@ namespace Tests
     }
 
     [Fact]
+    public void T6_UpdateAll()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
+
+      Student currentStudent = new Student( "Jon", "Jone", "jonJone@gmail.com", "/img/jon.jpg", Date1, student1.GetId());
+      //Act
+      student1.UpdateAll(currentStudent);
+      //  student1.UpdateAll(currentStudent);
+      // static void .. error CS0176: Member 'Student.UpdateAll(Student)' cannot be accessed with an instance reference; qualify it with a type name instead
+      //Assert
+      Assert.Equal(currentStudent, student1);
+    }
+
+    [Fact]
+    public void T7_DeleteOne()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
+
+      Student student2 = new Student("Jonny", "Jone", "jonjon@Jone.com", "/img/jonny.jpg", Date1);
+      student2.Save();
+
+      //Act
+      student2.DeleteOne();
+      List<Student> result = Student.GetAll();
+      List<Student> test = new List<Student> {student1};
+
+      //Assert
+      Assert.Equal(test, result);
+    }
+
+    [Fact]
+    public void T8_AddCourse()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
+
+      Course course1 = new Course("Intro", Date1, 1);
+      course1.Save();
+      Course course2 = new Course("JavaScript", Date1, 1);
+      course2.Save();
+
+      //Act
+      student1.AddCourse(course1);
+
+
+      List<Course> result = student1.GetCourses();
+      List<Course> test = new List<Course> {course1};
+      // Console.WriteLine(result[0].GetId());
+      // Console.WriteLine(test[0].GetId());
+      // Console.WriteLine(result[0].GetName());
+      // Console.WriteLine(test[0].GetName());
+      // Console.WriteLine(result[0]. GetStartDate() );
+      // Console.WriteLine(test[0]. GetStartDate() );
+
+      //Assert
+      Assert.Equal(test, result);
+
+    }
+
+    [Fact]
+    public void T9_GetCourses()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
+
+      Course course1 = new Course("Intro", Date1, 1);
+      course1.Save();
+      Course course2 = new Course("JavaScript", Date1, 1);
+      course2.Save();
+
+
+      //Act
+      student1.AddCourse(course1);
+
+      List<Course> result = student1.GetCourses();
+      List<Course> test = new List<Course> {course1};
+
+      //Assert
+      Assert.Equal(test, result);
+    }
+
+    [Fact]
+    public void T8_DeleteCourse()
+    {
+      //Assert
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
+
+      Course testCourse = new Course("Intro", Date1, 1);
+      testCourse.Save();
+
+      //Act
+      student1.AddCourse(testCourse);
+      //Student.DeleteCourse(student1.GetId(), testCourse.GetId());
+      student1.DeleteCourse( testCourse.GetId() );
+      int result = student1.GetCourses().Count;
+
+      //Assert
+      Assert.Equal(0, result);
+    }
 
 
     public void Dispose()
     {
       Student.DeleteAll();
+      Course.DeleteAll();
+      // Project.DeleteAll();
     }
   }
 }
+// Update
+// string name = "A place";
+//       Venue testVenue = new Venue(name);
+//       testVenue.Save();
+//       string newName = "B place";
+//
+//       //Act
+//       testVenue.Update(newName);
+//
+//       string result = testVenue.GetName();

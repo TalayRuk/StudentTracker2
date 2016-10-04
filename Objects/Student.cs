@@ -175,23 +175,17 @@ namespace Epicodus
     }
 
     // public void Update(string firstName, string lastName, string email, string picture, DateTime startDate, int id = 0)
-    public static Student UpdateAll(Student currentStudent)
-    {
+    public static void UpdateAll(Student currentStudent)
+    {//-->get error cannot implicitly convert type 'void'
+    //-->static void .. error CS0176: Member 'Student.UpdateAll(Student)' cannot be accessed with an instance reference; qualify it with a type name instead
+
       // this;
       // currentStudent;
       //in routing .. need to have already set form @Model ...
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE students SET fname = @fname OUTPUT INSERTED.fname WHERE id = @StudentId;", conn);
-
-      SqlCommand cmd = new SqlCommand("UPDATE students SET (lname = @lname) OUTPUT INSERTED.lname;", conn);
-
-      SqlCommand cmd = new SqlCommand("UPDATE students SET (email = @email) OUTPUT INSERTED.email;", conn);
-
-      SqlCommand cmd = new SqlCommand("UPDATE students SET (picture = @picture) OUTPUT INSERTED.picture;", conn);
-
-      SqlCommand cmd = new SqlCommand("UPDATE students SET (sdate = @sDate) OUTPUT INSERTED.sdate;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE students SET fname = @fname, lname = @lname, email = @email, picture = @picture, sdate = @sDate OUTPUT INSERTED.fname, INSERTED.lname, INSERTED.email, INSERTED.picture, INSERTED.sdate WHERE id = @StudentId;", conn);
 // CMD is already diffined in this scope - try googling long string update / multiple collums
       SqlParameter firstNameParameter = new SqlParameter();
       firstNameParameter.ParameterName = "@fname";

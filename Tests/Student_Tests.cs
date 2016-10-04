@@ -89,7 +89,20 @@ namespace Tests
     }
 
     [Fact]
+    public void T6_UpdateAll()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
 
+      Student editStudent = new Student("Jon", "Jone", "jonJone@gmail.com", "/img/jon.jpg", Date1);
+      //Act
+      Student updateStudent = Student.UpdateAll(editStudent);
+
+      //Assert
+      Assert.Equal(editStudent, updateStudent);
+    }
 
     public void Dispose()
     {

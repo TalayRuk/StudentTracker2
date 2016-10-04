@@ -175,12 +175,53 @@ namespace Epicodus
     }
 
     // public void Update(string firstName, string lastName, string email, string picture, DateTime startDate, int id = 0)
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //
-    //   SqlCommand cmd = new SqlCommand("UPDATE students SET (fname = @fname, lname = @lname, email = @email, picture = @picture, sdate = @sDate) OUTPUT INSERTED.name ")
-    // }
+    public static Student UpdateAll(Student currentStudent)
+    {
+      // this;
+      // currentStudent;
+      //in routing .. need to have already set form @Model ...
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE students SET fname = @fname OUTPUT INSERTED.fname WHERE id = @StudentId;", conn);
+
+      SqlCommand cmd = new SqlCommand("UPDATE students SET (lname = @lname) OUTPUT INSERTED.lname;", conn);
+
+      SqlCommand cmd = new SqlCommand("UPDATE students SET (email = @email) OUTPUT INSERTED.email;", conn);
+
+      SqlCommand cmd = new SqlCommand("UPDATE students SET (picture = @picture) OUTPUT INSERTED.picture;", conn);
+
+      SqlCommand cmd = new SqlCommand("UPDATE students SET (sdate = @sDate) OUTPUT INSERTED.sdate;", conn);
+// CMD is already diffined in this scope - try googling long string update / multiple collums
+      SqlParameter firstNameParameter = new SqlParameter();
+      firstNameParameter.ParameterName = "@fname";
+      firstNameParameter.Value = currentStudent.GetFName();
+      cmd.Parameters.Add(firstNameParameter);
+      cmd.Parameters.Add(new SqlParameter("@lname", currentStudent.GetLName()));
+      cmd.Parameters.Add(new SqlParameter("@lname", currentStudent.GetLName()));
+      cmd.Parameters.Add(new SqlParameter("@email", currentStudent.GetEmail()));
+      cmd.Parameters.Add(new SqlParameter("@picture", currentStudent.GetPicture()));
+      cmd.Parameters.Add(new SqlParameter("@sDate", currentStudent.GetStartDate()));
+      cmd.Parameters.Add(new SqlParameter("@StudentId", currentStudent.GetId()));
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        string fname = rdr.GetString(0);
+        string lname = rdr.GetString(0);
+        string email = rdr.GetString(0);
+        string picture = rdr.GetString(0);
+        DateTime sdate = rdr.GetDateTime(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
 
 
     public static void DeleteAll()

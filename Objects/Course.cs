@@ -47,62 +47,61 @@ namespace Epicodus
     {
       _active = active;
     }
-    //
-    // public override bool Eqauls(System.Object otherCourse)
-    // {
-    //   if (!(otherCourse is Course)
-    //   {
-    //     return false;
-    //   }
-    //   else
-    //   {
-    //     Course newCourse = (Course) otherCourse;
-    //     bool idEquality = (this.GetId() == newCourse.GetId());
-    //     bool nameEquality = (this.GetName() == newCourse.GetName());
-    //     bool startDateEquality = (this.GetStartDate() == newCourse.GetStartDate());
-    //     bool activeEquality = (this.Active() == newCourse.GetActive());
-    //     return (idEquality && nameEquality && startDateEquality && activeEquality);
-    //   }
-    // }
-    //
-    // public override int GetHashCode()
-    // {
-    //   return this.GetName().GetHashCode();
-    // }
-    //
-    //
-    // public static List<Course> GetAll()
-    // {
-    //   List<Course< allCourses = new List<Course> {};
-    //
-    //   SqlConnection conn = DB.Connectin();
-    //   conn.Open();
-    //   SqlCommand cmd = new SqlCommand("SELECT * FROM courses;", conn);
-    //   SqlDataReader rdr = cmd.ExecuteReader();
-    //
-    //   while(rdr.Read())
-    //   int id =0;
-    //   string ... = null
-    //   DateTime date =
-    //   // {
-    //   //   int id = rdr.GetInt32();
-    //   //   int active = rdr.GetInt32();
-    //   //   string = rdr.GetString();
-    //   //   DateTime startDate = rdr.GetString();
-    //   //   Course newCourse = new Course(name , startDate, active, id);
-    //   //   allCourses.Add(newCourse)
-    //   // }
-    //   if(rdr ! = null)
-    //   {
-    //     rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    //   return allCourses
-    // }
-    //
+
+    public override bool Equals(System.Object otherCourse)
+    {
+      if (!(otherCourse is Course))
+      {
+        return false;
+      }
+      else
+      {
+        Course newCourse = (Course) otherCourse;
+        bool idEquality = (this.GetId() == newCourse.GetId());
+        bool nameEquality = (this.GetName() == newCourse.GetName());
+        bool startDateEquality = (this.GetStartDate() == newCourse.GetStartDate());
+        bool activeEquality = (this.GetActive() == newCourse.GetActive());
+        return (idEquality && nameEquality && startDateEquality && activeEquality);
+      }
+    }
+
+    public override int GetHashCode()
+    {
+      return this.GetName().GetHashCode();
+    }
+
+
+    public static List<Course> GetAll()
+    {
+      List<Course> allCourses = new List<Course>{};
+
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM courses;", conn);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        DateTime date = rdr.GetDateTime(2);
+        int active = rdr.GetInt32(3);
+        Course newCourse = new Course(name, date, active, id);
+        allCourses.Add(newCourse);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return allCourses;
+    }
+
+
     public void Save()
     {
       SqlConnection conn = DB.Connection();
@@ -128,7 +127,7 @@ namespace Epicodus
         conn.Close();
       }
     }
-    // //
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

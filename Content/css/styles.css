@@ -194,7 +194,7 @@ body{ margin:0px 0px; }
 
 .easyTable th {
   height: 20px;
-  
+
 }
 
 .easyTable td {
@@ -202,4 +202,125 @@ body{ margin:0px 0px; }
   width: auto;
   margin: 0px;
   cell-spacing: 0px;
+}
+
+/*password form*/
+
+body{
+  height: 100vh;
+  text-align: center;
+}
+  /*Trigger Button*/
+.login-trigger {
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(to bottom right, #B05574, #F87E7B);
+  padding: 15px 30px;
+  border-radius: 30px;
+  position: relative;
+  top: 50%;
+}
+
+/*Modal*/
+h4 {
+  font-weight: bold;
+  color: #fff;
+}
+.close {
+  color: #fff;
+  transform: scale(1.2)
+}
+.modal-content {
+  font-weight: bold;
+  background: linear-gradient(to bottom right,#F87E7B,#B05574);
+}
+.form-control {
+  margin: 1em 0;
+}
+.form-control:hover, .form-control:focus {
+  box-shadow: none;
+  border-color: #fff;
+}
+.username, .password {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 2px solid #eee;
+  padding-left: 0;
+  font-weight: normal;
+  background: transparent;
+}
+.form-control::-webkit-input-placeholder {
+  color: #eee;
+}
+.form-control:focus::-webkit-input-placeholder {
+  font-weight: bold;
+  color: #fff;
+}
+.login {
+  padding: 6px 20px;
+  border-radius: 20px;
+  background: none;
+  border: 2px solid #FAB87F;
+  color: #FAB87F;
+  font-weight: bold;
+  transition: all .5s;
+  margin-top: 1em;
+}
+.login:hover {
+  background: #FAB87F;
+  color: #fff;
+}
+
+/*password............................................................*/
+
+
+@import url(https://fonts.googleapis.com/css?family=Merriweather);
+
+.coffeeshop { background: url(https://unsplash.it/1920/1080?image=42) no-repeat center center fixed; background-size: cover;font-family: 'Merriweather', serif;}
+
+.cool{
+   text-align: center;
+  background: fade(#6A9E98, 40%);
+  padding: 30px;
+          -webkit-border-radius:5px;
+       -moz-border-radius:5px;
+            border-radius:5px;
+  border: solid 1px #236A62;
+  max-width: 400px;
+}
+
+.cool h1{
+  color: #236A62;
+}
+
+.centered {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.input{
+  width: 100%;
+  min-width: 220px;
+  text-align: center;
+  min-height: 30px;
+  margin: 5px;
+}
+
+.button{
+  background: fade(#e3b067, 50%);
+  color: @tertiary;
+  width: 100px;
+  margin: 5px;
+  height: 40px;
+      -webkit-border-radius:5px;
+       -moz-border-radius:5px;
+            border-radius:5px;
+  border: solid 1px #236A62;
+}
+
+.button:hover{
+  background: #e3b067;
 }

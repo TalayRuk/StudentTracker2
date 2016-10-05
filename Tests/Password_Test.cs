@@ -28,7 +28,7 @@ namespace Tests
         [Fact]
         public void T2_FindPassword()
         {
-          Password newPassword = Password("password");
+          Password newPassword = new Password("username" );
           newPassword.Save();
           Password foundPassword = Password.Find(newPassword.GetId());
           Assert.Equal(newPassword, foundPassword);
@@ -47,7 +47,7 @@ namespace Tests
         [Fact]
         public void T4_DeleteOnePassword()
         {
-          Password Password = new Password("password");
+          Password newPassword = new Password("password");
           newPassword.Save();
 
           Password newPassword2 = new Password("password2");

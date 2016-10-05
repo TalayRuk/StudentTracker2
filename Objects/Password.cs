@@ -9,9 +9,9 @@ namespace Epicodus
   {
     private int _id;
     private string _userName;
-    private string _password
+    private string _password;
 
-    public Password(string userName, string password, int id = 0 )
+    public Password(string userName, string password = "password", int id = 0 )
     {
       _id = id;
       _userName = userName;
@@ -34,20 +34,20 @@ namespace Epicodus
     {
       _userName = newUserName;
     }
-    public void SetPassword()
+    public void SetPassword(string password)
     {
       _password = password;
     }
 
-    public override bool Equals(Sytem.Object otherPassword)
+    public override bool Equals(System.Object otherPassword)
     {
-      if (! ohterPassword is Password))
+      if (!(otherPassword is Password))
     {
       return false;
     }
     else
     {
-      Password newPassword = (Password) ohterPassword;
+      Password newPassword = (Password) otherPassword;
       bool idEquality = (this.GetId() == newPassword.GetId());
       bool nameEquality = (this.GetUserName() == newPassword.GetUserName());
       bool PasswordEquality = (this.GetPassword() == newPassword.GetPassword());
@@ -57,7 +57,7 @@ namespace Epicodus
 
   public static List<Password> GetAll()
   {
-    List<password> allPasswords = new List<Password>{};
+    List<Password> allPasswords = new List<Password>{};
 
      SqlConnection conn = DB.Connection();
      conn.Open();
@@ -91,16 +91,16 @@ namespace Epicodus
 
     SqlCommand cmd = new SqlCommand("SELECT * FROM passwords WHERE id = @id;");
 
-    cmd.Parameters.Add(new SqlParameter("@id, id"))
+    cmd.Parameters.Add(new SqlParameter("@id", id));
     SqlDataReader rdr = cmd.ExecuteReader();
 
-    int PasswordId = 0;
+    int passwordId = 0;
     string userName = null;
     string password = null;
 
     while(rdr.Read())
     {
-      passwordId = rdr.GetInt(0);
+      passwordId = rdr.GetInt32(0);
       userName = rdr.GetString(1);
       password = rdr.GetString(2);
     }
@@ -165,7 +165,7 @@ namespace Epicodus
     conn.Open();
 
     SqlCommand cmd = new SqlCommand("DELETE FROM passwords;",conn);
-    cmd1.ExecuteNonQuery();
+    cmd.ExecuteNonQuery();
     if(conn !=null)
     {
       conn.Close();

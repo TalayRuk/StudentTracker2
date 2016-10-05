@@ -6,6 +6,7 @@ namespace Epicodus
   {
     public HomeModule()
     {
+ 
       Get["/"] = _ =>
         {
           List<Student> studentList = studentList.GetAll();
@@ -17,6 +18,19 @@ namespace Epicodus
           model.Add("projectList", projectList);
           return View["index.cshtml", model];
         };
+
+      Get["/"] = _ => {
+        List<Student> studentList = Student.GetAll();
+        List<Course> courseList = Course.GetAll();
+        List<Project> projectList = Project.GetAll();
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("studentList", studentList);
+        model.Add("courseList", courseList);
+        model.Add("projectList", projectList);
+
+        return View["index.cshtml", model];
+      };
+
     }
   }
 }

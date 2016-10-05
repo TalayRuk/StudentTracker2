@@ -167,4 +167,4 @@ WHile()
 
 ID
 
-INSERT INTO SCG (stu
+INSERT INTO SCG (student

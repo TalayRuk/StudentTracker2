@@ -181,7 +181,7 @@ namespace Tests
     }
 
     [Fact]
-    public void T8_DeleteCourse()
+    public void T10_DeleteCourse()
     {
       //Assert
       DateTime Date1 = new DateTime (2016, 08, 01);
@@ -210,13 +210,3 @@ namespace Tests
     }
   }
 }
-// Update
-// string name = "A place";
-//       Venue testVenue = new Venue(name);
-//       testVenue.Save();
-//       string newName = "B place";
-//
-//       //Act
-//       testVenue.Update(newName);
-//
-//       string result = testVenue.GetName();

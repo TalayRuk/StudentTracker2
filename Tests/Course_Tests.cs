@@ -18,14 +18,14 @@ namespace Tests
     }
 
     [Fact]
-    public void Test_CheckForEmptyDataBase()
+    public void Test1_CheckForEmptyDataBase()
     {
     int tableRows = Course.GetAll().Count;
     Assert.Equal( 0, tableRows);
     }
 
     [Fact]
-    public void Test_checkGetNameFunction()
+    public void Test2_checkGetNameFunction()
     {
       DateTime date = new DateTime (2016,10,3);
       Course newCourse = new Course("CourseName" , date, 2);
@@ -33,7 +33,7 @@ namespace Tests
     }
 
     [Fact]
-    public void Test_Save_CanWeSaveABandToTheDatabase()
+    public void Test3_Save_CanWeSaveABandToTheDatabase()
     {
       //Course newCourse = new Course(CourseName , DateTime, active);
       DateTime date = new DateTime (2016,10,3);

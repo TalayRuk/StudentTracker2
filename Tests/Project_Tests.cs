@@ -18,14 +18,14 @@ namespace Tests
     }
 
     [Fact]
-    public void Test_CheckForEmptyDataBase()
+    public void Test1_CheckForEmptyDataBase()
     {
     int tableRows = Project.GetAll().Count;
     Assert.Equal( 0, tableRows);
     }
 
     [Fact]
-    public void Test_checkGetNameFunction()
+    public void Test2_checkGetNameFunction()
     {
       DateTime Date = new DateTime(2016,10,3);
       Project newProject = new Project("ProjectName", Date);
@@ -33,7 +33,7 @@ namespace Tests
     }
 
     [Fact]
-    public void Test_FindProject()
+    public void Test3_FindProject()
     {
       DateTime Date = new DateTime(2016,10,3);
       Project newProject = new Project("ProjectName", Date);
@@ -42,7 +42,7 @@ namespace Tests
       Assert.Equal(newProject, foundProject);
     }
     [Fact]
-    public void Test_DeleteOneProject()
+    public void Test4_DeleteOneProject()
     {
       DateTime Date = new DateTime(2016,10,3);
       Project newProject = new Project("ProjectName", Date);
@@ -60,7 +60,7 @@ namespace Tests
     }
 
     [Fact]
-    public void Test_UpdateOneProject()
+    public void Test5_UpdateOneProject()
     {
       DateTime Date = new DateTime(2016,10,3);
       Project testProject = new Project("ProjectName", Date);

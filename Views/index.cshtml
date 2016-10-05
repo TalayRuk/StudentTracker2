@@ -28,19 +28,16 @@
            <th>Start Date</th>
          </thead>
          <tbody>
+           @foreach(var student in Model["studentList"] )
+           {
            <tr>
-             <td>Stephen</td>
-             <td>Buchner</td>
-             <td>websites@jonathanbuchner.com</td>
-             <td>2016-10-08</td>
+             <td>@student.GetFName()</td>
+             <td>@student.GetLName()</td>
+             <td>@student.GetEmail()</td>
+             <td>@student.GetStartDate()</td>
              <td><span class="glyphicon glyphicon-remove-circle"></span>
            </tr>
-           <tr>
-             <td>Jonathan</td>
-             <td>Tory</td>
-             <td>websites@jonathanbuchner.com</td>
-             <td>2016-10-08</td>
-           </tr>
+          }
          </tbody>
        </table>
        <br>
@@ -56,7 +53,7 @@
    <section class="module content">
     <div class="container section-container">
       <div class="container section-container">
-        <table class="table">
+        <table >
           <thead>
             <th>First Name</th>
             <th>Last Name</th>

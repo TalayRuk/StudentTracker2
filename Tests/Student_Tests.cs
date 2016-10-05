@@ -64,7 +64,9 @@ namespace Tests
       student1.Save();
 
       //Act
-      Student savedId = Student.GetAll()[0];
+      //Student savedId = Student.GetAll()[0];
+      Student savedId = Student.Find(student1.GetId());
+
 
       int result = savedId.GetId();
       int testId = student1.GetId();

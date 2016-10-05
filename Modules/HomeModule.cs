@@ -16,18 +16,6 @@ namespace Epicodus
         return View["index.cshtml", model];
       };
 
-
-        List<Student> studentList = Student.GetAll();
-        List<Course> courseList = Course.GetAll();
-        List<Project> projectList = Project.GetAll();
-        Dictionary<string, object> model = new Dictionary<string, object>{};
-        model.Add("studentList", studentList);
-        model.Add("courseList", courseList);
-        model.Add("projectList", projectList);
-
-        return View["index.cshtml", model];
-      };
- 
     }
   }
 }

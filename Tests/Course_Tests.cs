@@ -45,7 +45,7 @@ namespace Tests
     }
 
     [Fact]
-    public void Test_DeleteOneCourse()
+    public void Test4_DeleteOneCourse()
     {
       DateTime date = new DateTime (2016,10,3);
       Course newCourse = new Course("CourseName" , date, 2);
@@ -63,7 +63,7 @@ namespace Tests
     }
 
     [Fact]
-    public void Test_FindCourse()
+    public void Test5_FindCourse()
     {
       DateTime date = new DateTime (2016,10,3);
       Course newCourse = new Course("CourseName" , date, 2);
@@ -73,7 +73,7 @@ namespace Tests
     }
 
     [Fact]
-    public void Test_UpdateOneCourse()
+    public void Test6_UpdateOneCourse()
     {
       DateTime date = new DateTime (2016,10,3);
       Course testCourse = new Course("CourseName" , date, 2, 0);

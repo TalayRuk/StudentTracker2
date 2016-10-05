@@ -265,6 +265,15 @@ namespace Epicodus
         Course newCourse = new Course(name, sdate, active, courseId);
         coursesList.Add(newCourse);
       }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
       return coursesList;
     }
 

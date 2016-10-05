@@ -142,6 +142,86 @@ namespace Epicodus
       }
     }
 
+    public void DeleteOne()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM courses WHERE id = @courseId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@courseId", this.GetId()));
+
+      cmd.ExecuteNonQuery();
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+
+    public static Course Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM courses WHERE id = @id;", conn);
+
+      cmd.Parameters.Add(new SqlParameter("@id", id));
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int courseId = 0;
+      string name = null;
+      DateTime defaultDate = new DateTime (2016, 08, 01);
+      int active = 0;
+      while (rdr.Read())
+      {
+        courseId = rdr.GetInt32(0);
+        name = rdr.GetString(1);
+        defaultDate = rdr.GetDateTime(2);
+        active = rdr.GetInt32(3);
+      }
+      Course foundCourse = new Course(name, defaultDate, active, courseId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundCourse;
+    }
+
+
+    public void Update(Course newCourse)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("UPDATE courses SET name = @NewName, sdate = @Date, active = @Active OUTPUT INSERTED.name, INSERTED.sdate, INSERTED.active WHERE id = @Id;", conn);
+
+      cmd.Parameters.Add(new SqlParameter("@NewName", newCourse.GetName() ));
+      cmd.Parameters.Add(new SqlParameter("@Date", newCourse.GetStartDate() ));
+      cmd.Parameters.Add(new SqlParameter("@Active", newCourse.GetActive() ));
+      cmd.Parameters.Add(new SqlParameter("@Id", newCourse.GetId() ));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read() )
+      {
+        this._name = rdr.GetString(0);
+        this._startDate = rdr.GetDateTime(1);
+        this._active = rdr.GetInt32(2);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
 
 
   }

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Nancy;
 
 namespace Epicodus
@@ -6,6 +8,7 @@ namespace Epicodus
   {
     public HomeModule()
     {
+
       Get["/"] = _ =>
         {
           List<Student> studentList = studentList.GetAll();
@@ -17,6 +20,13 @@ namespace Epicodus
           model.Add("projectList", projectList);
           return View["index.cshtml", model];
         };
+
+      Get["/"] = _ => {
+
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
+ 
     }
   }
 }

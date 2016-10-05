@@ -99,6 +99,16 @@ CREATE TABLE scg (
   PRIMARY KEY (id)
 );
 
+
+DROP TABLE IF EXISTS passwords;
+
+CREATE TABLE passwords (
+  id INTEGER NOT NULL IDENTITY(1,1),
+  user_name VARCHAR(255) NULL DEFAULT NULL,
+  user_password VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
 -- ---
 -- Foreign Keys
 -- ---

@@ -1,28 +1,37 @@
-### Student method
+### Fields
 * private int _id;
 * private string _firstName;
 * private string _lastName;
 * private string _email;
 * private string _picture;
-* private DateTime _startDate;
+* private DateTime _startDate;_
 
+
+### Methods
+###### Constructor:
 * public Student(string firstName, string lastName, string email, string picture, DateTime startDate, int id = 0)
+for Join Table using Course
+* public Course(string name, DateTime startDate, int active, int id = 0)
 
-* GetId, GetFName, GetLName, GetEmail, GetPicture, GetStartDate
-* GetAll using List<Student> .. return List<Student> allStudents
-* student1.Save
-* Student.Find(int id /student1.GetId()) return foundStudent
-* student1.UpdateAll(Student currentStudent)
-ie: UpdateAll method .. update every properties in Student class
-in the form .. need to create form that already has the student
-information prefilled so the studen can see what he/she is editing.
-* DeleteOne() take studentId, delete 1 student
-* DeleteAll() :delete all students & students from join students_courses table.
-* AddCourse(Course newCourse) take studentId & newCourse.GetId(classId)
- Add new Course to Student.
-* GetCourse() return List<Course>{coursesList.Add(newCourse)}
-newCourse has properties: name, sdate, active & id
-- take student Id & select course from that student
-* DeleteCourse (int classId)
-- select from student Id and delete class_id from course
--student1.DeleteCourse(testCourse.GetId()); >how to write it 
+Name|Discription
+---|---
+GetId() | Gets ID
+GetFName() | Get firstName
+GetLName() | Get lastName
+GetEmail() | Get string email
+GetPicture() | Get string "/img.student.jpg"
+GetStartDate() | Get DateTime date = new DateTime (2016, 08, 01)
+Save() | Insert student's properties into a specific student_id and save that student to the Table.
+UpdateAll(Student currentStudent) | Update all student's properties in the form, need to create form that already has the student information premade so the student can see what he/she is editing.
+DeleteOne() | Delete 1 student using student_id
+AddCourse(Course newCourse) | Using student id and class id to add all properties of a course to the student in the Join Table students_courses. This method add new Course to a student.
+GetCourses() | Return List<Course from coursesList.Add(newCourse), by using select all courses from students_courses Join Table using student_id and course_id
+ DeleteCourse (int classId) | Delete the individual course from a student; using class_id & student_id from students_courses Join Table. ie; student1.DeleteCourse(testCourses.GetId());
+
+###### Static
+
+Name| Description
+---|---
+GetAll() | Returns a List<Student
+Student.Find(int id /student1.GetId()) | find a student using the student_id return this specific student.
+DeleteAll() | delete all the students in students Table and students_courses Table.

@@ -9,9 +9,16 @@ namespace Epicodus
     public HomeModule()
     {
 
-      Get["/"] = _ => {
+      Get["/password"] = _ => {
         Dictionary<string, object> model = ViewRoutes.IndexView();
-        return View["index.cshtml", model];
+
+        return View["password.cshtml", model];
+      };
+      
+        Get["/"] = _ => {
+          Dictionary<string, object> model = ViewRoutes.IndexView();
+
+          return View["index.cshtml", model];
       };
 
     }

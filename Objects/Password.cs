@@ -54,6 +54,10 @@ namespace Epicodus
       return (idEquality && nameEquality && PasswordEquality);
     }
   }
+  public override int GetHashCode()
+  {
+    return this.GetId().GetHashCode();
+  }
 
   public static List<Password> GetAll()
   {

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>This Student</title>
+    <link rel="stylesheet" href="https://bootswatch.com/readable/bootstrap.min.css" >
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Noto+Sans'  type='text/css'>
+    <link rel="stylesheet" href="../Content/css/styles.css" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+    <script src="../Content/js/stupidTable.js"></script>
+    <script src="Content/js/scripts.js"></script>
+  </head>
+  <body>
+    <section class="module parallax parallax-1">
+      <div class="container">
+        <h1 id="brand"></h1>
+      </div>
+    </section>
+
+    <section class="module content">
+      <div class="container section-container">
+
+    <h1>@Model["student"].GetFName()</h1>
+
+    </form>
+    <hr>
+    <form class="form-inline" action='/update/@Model["student"].GetId()' method="post">
+      <div class="form-group">
+        <label for="fname">First Name:</label>
+        <input type="text" class="form-control" id="fname" name="fname" placeholder=@Model["student"].GetFName()>
+      </div>
+      <div class="form-group">
+        <label for="lname">Last Name:</label>
+        <input type="text" class="form-control" id="lname" name="lname" placeholder=@Model["student"].GetLName()>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder=@Model["student"].GetEmail()>
+      </div>
+      <div>
+        <label for="picture">Picture file name:</label>
+        <input type="url" class="form-control" id="picture" name="picture" placeholder=@Model["student"].GetPicture()>
+      </div>
+      <div>
+        <label for="startDate">Start Date:</label>
+        <input type="date" class="form-control" id="startDate" name="startDate" >
+      </div>
+      <button type="submit" class="btn btn-default">Update This Student</button>
+    </form>
+  </section>
+
+
+    <section class="module parallax parallax-1">
+      <div class="container">
+        <h1 id="brand"></h1>
+      </div>
+    </section>
+
+    </div>
+
+
+
+    <div class="container section-container">
+
+
+    <h/>
+    <h2>Courses</h2>
+    <table class="stupid">
+      <thead>
+        <tr>
+          <th data-sort="string">Course Name</th>
+          <th data-sort="string">Course Status</th>
+        </tr>
+      </thead>
+      <tbody>
+      @foreach(var course in Model["courseList"] )
+      {
+        <tr>
+          <td><a href='/course/@Model["courseList"].GetId()'>@Model["courseList"].GetName() </a></td>
+          <td>@Model["courseList"].GetStatus()</td>
+        </tr>
+      }
+      </tbody>
+    </table >
+    <br>
+
+    <h2>projects</h2>
+    <table class="stupid">
+      <thead>
+        <tr>
+          <th data-sort="string">Course Name</th>
+          <th data-sort="string">Course Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach(var project in Model["projectList"] )
+        {
+          <tr>
+            <td><a href='/project/@Model["projectList"].GetId()'></a></td>
+            <td>@Model["projectList"].GetDate()</td>
+          </tr>
+        }
+      </tbody>
+    </table >
+
+
+    </div>
+    </section>
+    <section class="module parallax parallax-1">
+      <div class="container">
+        <h1 id="brand"></h1>
+      </div>
+    </section>
+
+    <div>
+      <a href="/"> Return Home</a>
+    </div>
+
+  </body>
+</html>

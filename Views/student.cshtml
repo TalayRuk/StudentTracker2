@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>This Student</title>
     <link rel="stylesheet" href="https://bootswatch.com/readable/bootstrap.min.css" >
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Noto+Sans'  type='text/css'>
     <link rel="stylesheet" href="../Content/css/styles.css" >
@@ -26,7 +26,7 @@
 
     </form>
     <hr>
-    <form class="form-inline" action="/add" method="post">
+    <form class="form-inline" action='/update/@Model["student"].GetId()' method="post">
       <div class="form-group">
         <label for="fname">First Name:</label>
         <input type="text" class="form-control" id="fname" name="fname" placeholder=@Model["student"].GetFName()>
@@ -75,18 +75,13 @@
         </tr>
       </thead>
       <tbody>
+      @foreach(var course in Model["courseList"] )
+      {
         <tr>
-          <td>Course Name</td>
-          <td>Course Status</td>
+          <td><a href='/course/@Model["courseList"].GetId()'>@Model["courseList"].GetName() </a></td>
+          <td>@Model["courseList"].GetStatus()</td>
         </tr>
-        <tr>
-          <td>dCourse Name</td>
-          <td>dCourse Status</td>
-        </tr>
-        <tr>
-          <td>aCourse Name</td>
-          <td>zCourse Status</td>
-        </tr>
+      }
       </tbody>
     </table >
     <br>
@@ -100,25 +95,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>projectA Name</td>
-          <td>projectA Date</td>
-        </tr>
-        <tr>
-          <td>projectB Name</td>
-          <td>projectB Date</td>
-
-        </tr>
-        <tr>
-          <td>projectC Name</td>
-          <td>projectC Date</td>
-        </tr>
+        @foreach(var project in Model["projectList"] )
+        {
+          <tr>
+            <td><a href='/project/@Model["projectList"].GetId()'></a></td>
+            <td>@Model["projectList"].GetDate()</td>
+          </tr>
+        }
       </tbody>
     </table >
 
 
     </div>
-
     </section>
     <section class="module parallax parallax-1">
       <div class="container">
@@ -126,6 +114,9 @@
       </div>
     </section>
 
+    <div>
+      <a href="/"> Return Home</a>
+    </div>
 
   </body>
 </html>

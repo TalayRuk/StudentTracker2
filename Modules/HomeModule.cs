@@ -93,6 +93,25 @@ namespace Epicodus
       };
 
 
+      Post["/update/{id}"] = parameters => {
+        Student student = Student.Find(parameters.id);
+        string fname = Request.Form["fname"];
+        string lname = Request.Form["lname"];
+        string email = Request.Form["email"];
+        string picture = Request.Form["picture"];
+        DateTime startDate = Request.Form["startDate"];
+        Student newStudent = new Student (fname, lname, email, picture, startDate);
+        newStudent.Save();
+        student.UpdateAll(newStudent);
+        List<Course> courseList = student.GetCourses();
+        List<Project> projectList = student.GetProjects();
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("courseList", courseList);
+        model.Add("projectList", projectList);
+        model.Add("student", student);
+        return View["student.cshtml", model];
+      };
+
       // Basic Link GetAll
 
       // link :homepage, courseslist, delete, project list?
@@ -103,6 +122,16 @@ namespace Epicodus
       //////////////////////////////////////////////////////
       /// Goes Course.cshtml
       /////////////////////////////////////////////////////
+
+      Get["/course/{id}"] = parameters => {
+          Course course = Course.Find(parameters.id);
+          List<Student> studentList = course.GetStudents();
+          Dictionary<string, object> model = new Dictionary<string, object>{};
+          model.Add("studentList", studentList);
+          model.Add("course", course);
+          return View["course.cshtml", model];
+      };
+
       //link to getall course, homepage, studentlist, delete, project?
       //updateAll course
       //delete student from course

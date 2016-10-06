@@ -110,7 +110,7 @@
                   @foreach (var course in  Model["courseList"])
                   {
                     <tr>
-                      <td>@course.GetName()</td>
+                      <td><a href="course/@course.GetId()">@course.GetName()</a></td>
                       <td>@course.GetStartDate()</td>
                       <td>@course.GetActive()</td>
                       <td>

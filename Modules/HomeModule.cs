@@ -111,9 +111,12 @@ namespace Epicodus
 
       Get["/student/{id}"] = parameters => {
           Student student = Student.Find(parameters.id);
+
+          List<Course> allCourses = Course.GetAll();
           List<Course> courseList = student.GetCourses();
           List<Project> projectList = student.GetProjects();
           Dictionary<string, object> model = new Dictionary<string, object>{};
+          model.Add("allCourses", allCourses);
           model.Add("courseList", courseList);
           model.Add("projectList", projectList);
           model.Add("student", student);
@@ -131,9 +134,48 @@ namespace Epicodus
         Student newStudent = new Student (fname, lname, email, picture, startDate);
         newStudent.Save();
         student.UpdateAll(newStudent);
+        List<Course> allCourses = Course.GetAll();
         List<Course> courseList = student.GetCourses();
         List<Project> projectList = student.GetProjects();
         Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("courseList", courseList);
+        model.Add("projectList", projectList);
+        model.Add("student", student);
+        return View["student.cshtml", model];
+      };
+
+      Patch["/student/{id}"] = parameters => {
+        Student student = Student.Find(parameters.id);
+
+        string idString = Request.Form["id"];
+        int id = Int32.Parse(idString);
+        Course course = Course.Find(id);
+        student.AddCourse(course);
+
+        List<Course> allCourses = Course.GetAll();
+        List<Course> courseList = student.GetCourses();
+        List<Project> projectList = student.GetProjects();
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("allCourses", allCourses);
+        model.Add("courseList", courseList);
+        model.Add("projectList", projectList);
+        model.Add("student", student);
+        return View["student.cshtml", model];
+      };
+
+    Delete["/student/{id}"] = parameters => {
+        Student student = Student.Find(parameters.id);
+        string idString = Request.Form["id"];
+        int id = Int32.Parse(idString);
+        student.DeleteCourse(id);
+        Console.WriteLine("hey");
+
+
+        List<Course> allCourses = Course.GetAll();
+        List<Course> courseList = student.GetCourses();
+        List<Project> projectList = student.GetProjects();
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("allCourses", allCourses);
         model.Add("courseList", courseList);
         model.Add("projectList", projectList);
         model.Add("student", student);

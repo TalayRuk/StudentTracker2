@@ -28,6 +28,7 @@
           <th>Start Date</th>
         </thead>
         <tbody>
+          <!-- ADD STUDENTS -->
           @foreach(var student in Model["studentList"] )
           {
             <tr>
@@ -36,8 +37,8 @@
               <td>@student.GetEmail()</td>
               <td>@student.GetStartDate()</td>
               <td>
+                <!-- DELETE A STUDENT -->
                 <form action="/delete" method = "post">
-                <!-- <input type="hidden" name="_method" value="DELETE"> -->
                 <input type="hidden" name="id" value="@student.GetId()">
                 <button type="submit" class="glyphicon glyphicon-remove-circle"></button>
               </form>
@@ -52,29 +53,43 @@
         <h4>Add Student </h4>
         <form class="form-inline" action="/add" method="post">
           <div class="form-group">
-            <label for="fname">First Name:</label>
-            <input type="text" class="form-control" id="fname" name="fname">
+            <label class="sr-only" for="fname">First Name:</label>
+            <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name">
           </div>
           <div class="form-group">
-            <label for="lname">Last Name:</label>
-            <input type="text" class="form-control" id="lname" name="lname">
+            <label class="sr-only" for="lname">Last Name:</label>
+            <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name">
           </div>
-          <div>
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" name="email">
+          <div class="form-group">
+            <label class="sr-only" for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
           </div>
-          <div>
-            <label for="picture">Picture file name:</label>
-            <input type="url" class="form-control" id="picture" name="picture">
+          <div class="form-group">
+            <label class="sr-only" for="picture">Picture:</label>
+            <input type="url" class="form-control" id="picture" name="picture" placeholder="Picture File URL">
           </div>
-          <div>
-            <label for="startDate">Start Date:</label>
-            <input type="date" class="form-control" id="startDate" name="startDate">
+          <div class="form-group">
+            <label class="sr-only" for="startDate">Start Date:</label>
+            <input type="date" class="form-control" id="startDate" name="startDate" placeholder="Start Date">
           </div>
-          <button type="submit" class="btn btn-default">Add Student</button>
+          <button type="submit" class="btn btn-primary">Add Student</button>
         </form>
+        <br>
+        <!-- Delete ALL STUDENTS -->
+        <button class="slide_open btn btn-primary">Delete All Students</button>
+        <div id="slide">
+          <h2>Are you sure you want to delete all students?</h2>
+          <form  action="/delete-all" method="post">
+            <!-- <input type="hidden"  value="DELETE"> -->
+            <button class="btn btn-primary" type="submit">Yes</button>
+            <button class="btn btn-primary" <a href="/"> </a>>No</button>
+          </form>
+        </div>
       </div>
-    </section>
+  </section>
+
+
+      <!-- ADD COURSE  -->
     <section class="module parallax parallax-1">
       <div class="container">
         <h1 id="brand"></h1>
@@ -83,29 +98,63 @@
     <section class="module content">
       <div class="container section-container">
         <div class="container section-container">
-          <table CLASS="stupid">
+          <table class="stupid">
             <thead>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
+
+              <th>Course </th>
               <th>Start Date</th>
+              <th>Active </th>
             </thead>
             <tbody>
-              <tr>
-                <td>Stephen</td>
-                <td>Buchner</td>
-                <td>websites@jonathanbuchner.com</td>
-                <td>2016-10-08</td>
-                <td><span class="glyphicon glyphicon-remove-circle"></span>
-                </tr>
                 <tr>
-                  <td>Jonathan</td>
-                  <td>Tory</td>
-                  <td>websites@jonathanbuchner.com</td>
-                  <td>2016-10-08</td>
+                  @foreach (var course in @Model["courseList"])
+                  {
+                    <tr>
+                      <td>@course.GetName()</td>
+                      <td>@course.GetStartDate()</td>
+                      <td>@course.GetActive()</td>
+                      <td>
+                        <!-- DELETE A COURSE -->
+                        <!-- <form action="/delete" method = "post">
+                          <input type="hidden" name="id" value="@course.GetId()">
+                          <button type="submit" class="glyphicon glyphicon-remove-circle"></button>
+                        </form> -->
+                      </td>
+                    </tr>
+                  }
                 </tr>
-              </tbody>
+              }
+            </tbody>
           </table>
+
+              <!-- <h4><a href="/add-course"> </a></h4> -->
+              <br>
+          <h4>Add Course </h4>
+          <form class="form-inline" action="/add" method="post">
+            <div class="form-group">
+              <label class="sr-only" for="name">Name:</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Course Name">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="startDate">Start Date:</label>
+              <input type="date" class="form-control" id="startDate" name="startDate" placeholder="Start Date">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="active">Email:</label>
+              <input type="text" class="form-control" id="active" name="active" placeholder="Active = 1; NonActive = 2; Incoming = 3; " >
+            </div>
+            <button type="submit" class="btn btn-primary">Add new course</button>
+          </form>
+          <br>
+          <!-- Delete ALL COURSES -->
+          <!-- <button class="slide_open btn btn-primary">Delete All Courses</button>
+          <div id="slide">
+            <h2>Are you sure you want to delete all COURSES?</h2>
+            <form  action="/delete-all" method="post">
+              <!-- <input type="hidden"  value="DELETE"> -->
+              <button class="btn btn-primary" type="submit">Yes</button>
+              <button class="btn btn-primary" <a href="/"> </a>>No</button>
+            </form>
           <br>
           <br>
           <button class="btn btn-primary" id="getSelected">Get Selected</button>
@@ -129,7 +178,28 @@
     <div class="addStudent">
 
 
-    </div>
+    </div> -->
 
 </body>
 </html>
+
+<!-- <th>First Name</th>
+<th>Last Name</th>
+<th>Email</th>
+<th>Start Date</th>
+</thead>
+<tbody>
+<tr>
+  <td>Stephen</td>
+  <td>Buchner</td>
+  <td>websites@jonathanbuchner.com</td>
+  <td>2016-10-08</td>
+  <td><span class="glyphicon glyphicon-remove-circle"></span>
+  </tr>
+  <tr>
+    <td>Jonathan</td>
+    <td>Tory</td>
+    <td>websites@jonathanbuchner.com</td>
+    <td>2016-10-08</td>
+  </tr>
+</tbody> -->

@@ -218,6 +218,15 @@ namespace Epicodus
       SqlConnection conn = DB.Connection();
       conn.Open();
 
+      // string query =  "DELETEE FROM scg WHERE SCG ";
+      // SqlCommand cmd1 = new SqlCommand(query, conn);
+      // cmd1.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
+      // cmd1.ExecuteNonQuery();
+      //
+      // SqlCommand cmd1 = new SqlCommand("DELETE FROM students_courses WHERE id = @studentId;", conn);
+      // cmd1.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
+      // cmd1.ExecuteNonQuery();
+
       SqlCommand cmd = new SqlCommand("DELETE FROM students WHERE id = @studentId;", conn);
       cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
       cmd.ExecuteNonQuery();

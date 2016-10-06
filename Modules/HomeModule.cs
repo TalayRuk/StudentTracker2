@@ -31,22 +31,51 @@ namespace Epicodus
         Dictionary<string, object> model = ViewRoutes.IndexView();
         return View["index.cshtml", model];
       };
+      // Delete One course
       Post["/delete"] = _ => {
-        string idstring = Request.Form["id"];
-        int id = Int32.Parse(idstring);
-        Console.WriteLine(id);
+        string idString = Request.Form["id"];
+        int id = Int32.Parse(idString);
         Student student = Student.Find(id);
         student.DeleteOne();
 
         Dictionary<string, object> model = ViewRoutes.IndexView();
-        return View["     .cshtml", model];
+        return View["index.cshtml", model];
       };
 
-      //DELETE all students
-      //DELETE all course
+      //DELETE all student *not working
+      Post["/delete_all"] = _ => {
+        Student.DeleteAll();
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
       //Add Course
-      // Delete One course
+      Post["/add_course"] = _ => {
+        string name = Request.Form["name"];
+        DateTime startDate = Request.Form["start-Date"];
+        string activeString = Request.Form["active"];
+        int active = Int32.Parse(activeString);
+        Course course = new Course(name, startDate, active);
+        course.Save();
 
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
+      // Delete One course
+      Post["/delete_course"] = _ => {
+        string idString = Request.Form["id"];
+        int id = Int32.Parse(idString);
+        Course course = Course.Find(id);
+        course.DeleteOne();
+
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
+      //DELETE all course *not working
+      Post["/delete_all"] = _ => {
+        Course.DeleteAll();
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
 
       //////////////////////////////////////////////////////
       /// Goes student.cshtml
@@ -91,25 +120,18 @@ namespace Epicodus
       // Post["/editAll"] = _ => {
       //
       // };
-      // Post["/deleteall"] = _ => {
-      //   Student student = Student.GetId();
-      //   student.DeleteAll();
-      //   Dictionary<string, object> model = ViewRoutes.IndexView();
-      //   return View["index.cshtml", model];
-      // };
+
       //
-      // Post["/add-course"] = _ => {
+      // Post["/add_course"] = _ => {
       //
       // };
       // Post["/edit-course"] = _ => {
       //
       // };
-      // Post["/delete-course"] = _ => {
+      // Post["/delete_course"] = _ => {
       //
       // };
-      // Post["/deleteall-course"] = _ => {
-      //
-      // };
+
       // Post["/add-project"] = _ => {
       //
       // };
@@ -128,10 +150,10 @@ namespace Epicodus
       // Post["/delete-student-to-course"] = _ => {
       //
       // };
-      // Post["/add-course-to-student"] = _ => {
+      // Post["/add_course-to-student"] = _ => {
       //
       // };
-      // Post["/delete-course-to-student"] = _ => {
+      // Post["/delete_course-to-student"] = _ => {
       //
       // };
       // Post["/add-project-to-student"] = _ => {

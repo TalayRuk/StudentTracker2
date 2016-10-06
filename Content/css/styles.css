@@ -14,9 +14,9 @@ section.module.parallax h1 {
   font-family: 'Permanent Marker', cursive;
   color: rgba(255, 255, 255, 0.8);
   font-size: 70px;
-  line-height: 400px;
+  line-height: 120px;
   font-weight: 700;
-  text-align: right;
+  text-align: left;
   text-transform: uppercase;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
@@ -25,6 +25,10 @@ section.module.parallax-1 {
   background-image: url("https://static1.squarespace.com/static/5524448ee4b0d6f6b83ab9e2/t/5554e1d9e4b0f33dbaf8d031/1431626275703/DSC00085.JPG?format=1500w");
 }
 
+section.module.content{
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
 
 
 /**********************************
@@ -160,7 +164,7 @@ section.module.parallax-1 {
  Licensed under the MIT license
  Version: 0.1
 */
-
+/*
 .easyTable {
   outline: none;
 }
@@ -202,7 +206,7 @@ section.module.parallax-1 {
   width: auto;
   margin: 0px;
   cell-spacing: 0px;
-}
+}*/
 
 
 /*password............................................................*/

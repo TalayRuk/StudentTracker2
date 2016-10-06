@@ -58,6 +58,7 @@ Name|Discription
 GetId() | Gets ID
 GetFName() | Get Name
 GetStartDate() | Get DateTime date = new DateTime (2016, 08, 01)
+GetActive() |  int GetActive()
 Save() | Insert project's properties into a specific project_id and save that project to the Table.
 UpdateAll(Project currentProject) | Update all project's properties in the form, need to create form that already has the project information premade so the project can see what he/she is editing.
 DeleteOne() | Delete 1 project using project_id

@@ -1,6 +1,8 @@
 ### Methods Student
 
 ### Fields
+
+
 * private int _id;
 * private string _firstName;
 * private string _lastName;
@@ -14,7 +16,7 @@
 for Join Table using Course
 * public Course(string name, DateTime startDate, int active, int id = 0)
 
-Name|Discription
+Name|Description
 ---|---
 GetId() | Gets ID
 GetFName() | Get firstName

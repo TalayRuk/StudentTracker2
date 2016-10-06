@@ -61,6 +61,16 @@ namespace Epicodus
         Dictionary<string, object> model = ViewRoutes.IndexView();
         return View["index.cshtml", model];
       };
+      // Delete One course
+      Post["/delete-course"] = _ => {
+        string idString = Request.Form["id"];
+        int id = Int32.Parse(idString);
+        Course course = Course.Find(id);
+        course.DeleteOne();
+
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
 
 
       //////////////////////////////////////////////////////

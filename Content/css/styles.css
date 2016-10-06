@@ -30,6 +30,10 @@ section.module.content{
   margin-bottom: 60px;
 }
 
+.picture {
+  width:100px;
+}
+
 
 /**********************************
 ***For Hero Image
@@ -69,7 +73,7 @@ section.module.content{
 /**********************************
 ***Pop Up Slider
 ***********************************/
-#slide_background {
+#slide_background, {
   transition: all 0.3s 0.3s;
 }
 #slide,
@@ -87,6 +91,41 @@ section.module.content{
   transform: translateX(0) translateY(0);
 }
 
+#slide1_background, {
+  transition: all 0.3s 0.3s;
+}
+#slide1,
+#slide1_wrapper {
+  transition: all 0.3s ease-out;
+}
+#slide1 {
+  transform: translateX(0) translateY(-40%);
+  background-color: rgba(255,255,255,1);
+  border-radius: 40px;
+  margin: 100px;
+  padding: 20px;
+}
+.popup_visible #slide1 {
+  transform: translateX(0) translateY(0);
+}
+
+#slide2_background, {
+  transition: all 0.3s 0.3s;
+}
+#slide2,
+#slide1_wrapper2 {
+  transition: all 0.3s ease-out;
+}
+#slide2 {
+  transform: translateX(0) translateY(-40%);
+  background-color: rgba(255,255,255,1);
+  border-radius: 40px;
+  margin: 100px;
+  padding: 20px;
+}
+.popup_visible #slide2 {
+  transform: translateX(0) translateY(0);
+}
 /**********************************
 ***Pop Up Slider
 ***********************************/

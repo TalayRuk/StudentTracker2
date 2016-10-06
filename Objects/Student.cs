@@ -340,15 +340,16 @@ namespace Epicodus
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
+
+      SqlCommand cmd2 = new SqlCommand("DELETE FROM scg;", conn);
+      cmd2.ExecuteNonQuery();
+
       SqlCommand cmd1 = new SqlCommand("DELETE FROM students_courses;", conn);
       cmd1.ExecuteNonQuery();
 
       SqlCommand cmd = new SqlCommand("DELETE FROM students;", conn);
       cmd.ExecuteNonQuery();
-      if (conn != null)
-      {
-        conn.Close();
-      }
+      conn.Close();
     }
   }
 }

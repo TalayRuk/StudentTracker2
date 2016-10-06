@@ -42,7 +42,7 @@ namespace Epicodus
         return View["index.cshtml", model];
       };
 
-      //DELETE all student *not working
+      //DELETE all student
       Post["/delete_all"] = _ => {
         Student.DeleteAll();
         Dictionary<string, object> model = ViewRoutes.IndexView();
@@ -70,12 +70,40 @@ namespace Epicodus
         Dictionary<string, object> model = ViewRoutes.IndexView();
         return View["index.cshtml", model];
       };
-      //DELETE all course *not working
-      Post["/delete_all"] = _ => {
+      //DELETE all course
+      Post["/delete_all_course"] = _ => {
         Course.DeleteAll();
         Dictionary<string, object> model = ViewRoutes.IndexView();
         return View["index.cshtml", model];
       };
+      ////
+      //Add Course
+      Post["/add_project"] = _ => {
+        string name = Request.Form["name"];
+        DateTime startDate = Request.Form["date"];
+        Project project = new Project(name, startDate);
+        project.Save();
+
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
+      // Delete One course
+      Post["/delete_project"] = _ => {
+        string idString = Request.Form["id"];
+        int id = Int32.Parse(idString);
+        Project project = Project.Find(id);
+        project.Delete();
+
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
+      //DELETE all course *not working
+      Post["/delete_all_project"] = _ => {
+        Project.DeleteAll();
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
+
 
       //////////////////////////////////////////////////////
       /// Goes student.cshtml
@@ -145,54 +173,7 @@ namespace Epicodus
       //add project
       // select project
 
-      //
-      //
-      // Post["/editAll"] = _ => {
-      //
-      // };
-
-      //
-      // Post["/add_course"] = _ => {
-      //
-      // };
-      // Post["/edit-course"] = _ => {
-      //
-      // };
-      // Post["/delete_course"] = _ => {
-      //
-      // };
-
-      // Post["/add-project"] = _ => {
-      //
-      // };
-      // Post["/edit-project"] = _ => {
-      //
-      // };
-      // Post["/delete-project"] = _ => {
-      //
-      // };
-      // Post["/deleteall-project"] = _ => {
-      //
-      // };
-      // Post["/add-student-to-course"] = _ => {
-      //
-      // };
-      // Post["/delete-student-to-course"] = _ => {
-      //
-      // };
-      // Post["/add_course-to-student"] = _ => {
-      //
-      // };
-      // Post["/delete_course-to-student"] = _ => {
-      //
-      // };
-      // Post["/add-project-to-student"] = _ => {
-      //
-      // };
-      // Post["/delete-project-to-student"] = _ => {
-      //
-      // };
-
+      
     }
   }
 }

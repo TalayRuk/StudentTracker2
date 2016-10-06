@@ -23,6 +23,7 @@
       <h1>Students</h1>
       <table class="stupid">
         <thead>
+          <th>Picture</th>
           <th data-sort="string">First Name</th>
           <th data-sort="string">Last Name</th>
           <th data-sort="string">Email</th>
@@ -34,6 +35,7 @@
           @foreach(var student in Model["studentList"] )
           {
             <tr>
+              <td ><img class="picture" src="@student.GetPicture()"></td>
               <td ><a href="student/@student.GetId()">@student.GetFName()</a></td>
               <td >@student.GetLName()</td>
               <td >@student.GetEmail()</td>
@@ -80,8 +82,8 @@
           <h2>Are you sure you want to delete all students?</h2>
           <form  action="/delete_all" method="post">
             <button class="btn btn-primary" type="submit">Yes</button>
-            <button class="btn btn-primary" type="button" onclick="window.location='/'; return false;">No</button>
           </form>
+
         </div>
       </div>
   </section>
@@ -117,7 +119,6 @@
                         <!-- DELETE A COURSE -->
                         <form action="/delete_course" method = "post">
                           <input type="hidden" name="id" value="@course.GetId()">
-                          <button type="submit" class="glyphicon glyphicon-remove-circle"></button>
                         </form>
                       </td>
                     </tr>
@@ -144,30 +145,73 @@
           </form>
           <br>
           <!-- Delete ALL COURSES -->
-          <button class="slide_open btn btn-primary">Delete All Courses</button>
+          <button class="slide1_open btn btn-primary">Delete All Courses</button>
           <div id="slide1">
             <h2>Are you sure you want to delete all COURSES?</h2>
             <form  action="/delete_all_course" method="post">
               <button class="btn btn-primary" type="submit">Yes</button>
-              <button class="btn btn-primary" type="button" onclick="window.location='/'; return false;">No</button>
             </form>
           <br>
         </div>
     </section>
-    <section class="module parallax parallax-1">
-      <div class="container">
-        <h1 id="brand"></h1>
-      </div>
-    </section>
-    <section class="module content">
+    <!-- ADD PROJECT  -->
+  <section class="module parallax parallax-1">
+    <div class="container">
+      <h1 id="brand"></h1>
+    </div>
+  </section>
+  <section class="module content">
+    <div class="container section-container">
       <div class="container section-container">
-        <div class="city-output">
-          <h1></h1>
-          <p>
-          </p>
-        </div>
+        <h1>Project</h1>
+        <table class="stupid">
+          <thead>
+            <th data-sort="string">Project</th>
+            <th data-sort="date">Date</th>
+            <th> </th>
+          </thead>
+          <tbody>
+              <tr>
+                @foreach (var project in  Model["projectList"])
+                {
+                  <tr>
+                    <td >@project.GetName()</td>
+                    <td>@project.GetDate()</td>
+                    <td>
+                      <!-- DELETE A COURSE -->
+                      <form action="/delete_project" method = "post">
+                        <input type="hidden" name="id" value="@project.GetId()">
+                        <button type="submit" class="glyphicon glyphicon-remove-circle"></button>
+                      </form>
+                    </td>
+                  </tr>
+                }
+              </tr>
+          </tbody>
+        </table>
+        <br>
+        <h4>Add Course </h4>
+        <form class="form-inline" action="/add_project" method="post">
+          <div class="form-group">
+            <label class="sr-only" for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Project Name">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="startDate">Date:</label>
+            <input type="date" class="form-control" id="startDate" name="date" placeholder="Date">
+          </div>
+          <button class="btn btn-primary" type="submit">Add</button>
+        </form>
+        <!-- Delete ALL COURSES -->
+        <button class="slide2_open btn btn-primary">Delete All Projects</button>
+        <div id="slide2">
+          <h2>Are you sure you want to delete all PROJECTS?</h2>
+          <form  action="/delete_all_project" method="post">
+            <button class="btn btn-primary" type="submit">Yes</button>
+          </form>
+        <br>
       </div>
-    </section>
+  </section>
 
 </body>
 </html>

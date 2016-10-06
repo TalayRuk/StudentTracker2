@@ -46,8 +46,8 @@
               </form>
               </td>
             </tr>
-            }
-          </tbody>
+          }
+        </tbody>
         </table>
         <h4>Add Student </h4>
         <form class="form-inline" action="/add" method="post">
@@ -79,9 +79,8 @@
         <div id="slide">
           <h2>Are you sure you want to delete all students?</h2>
           <form  action="/delete_all" method="post">
-            <!-- <input type="hidden"  value="DELETE"> -->
             <button class="btn btn-primary" type="submit">Yes</button>
-            <button class="btn btn-primary" <a href="/"> </a>>No</button>
+            <button class="btn btn-primary" type="button" onclick="window.location='/'; return false;">No</button>
           </form>
         </div>
       </div>
@@ -97,9 +96,10 @@
     <section class="module content">
       <div class="container section-container">
         <div class="container section-container">
+          <h1>Courses</h1>
           <table class="stupid">
             <thead>
-              <th>Course </th>
+              <th>Course</th>
 
               <th data-sort="string">Course Name</th>
               <th data-sort="string">Start Date</th>
@@ -123,7 +123,6 @@
                     </tr>
                   }
                 </tr>
-              }
             </tbody>
           </table>
           <br>
@@ -139,23 +138,20 @@
             </div>
             <div class="form-group">
               <label class="sr-only" for="active">Email:</label>
-              <input type="text" class="form-control" id="active" name="active" placeholder="Active = 1; NonActive = 2; Incoming = 3; " >
+              <input type="text" class="form-control" id="active" name="active" placeholder="Closed =0; Active = 1; InActive = 2; Incoming = 3; " >
             </div>
             <button type="submit" class="btn btn-primary">Add new course</button>
           </form>
           <br>
           <!-- Delete ALL COURSES -->
           <button class="slide_open btn btn-primary">Delete All Courses</button>
-          <div id="slide">
+          <div id="slide1">
             <h2>Are you sure you want to delete all COURSES?</h2>
             <form  action="/delete_all_course" method="post">
-              <!-- <input type="hidden"  value="Post"> -->
               <button class="btn btn-primary" type="submit">Yes</button>
-              <button class="btn btn-primary" <a href="/"> </a>>No</button>
+              <button class="btn btn-primary" type="button" onclick="window.location='/'; return false;">No</button>
             </form>
           <br>
-          <br>
-          <button class="btn btn-primary" id="getSelected">Get Selected</button>
         </div>
     </section>
     <section class="module parallax parallax-1">
@@ -173,31 +169,5 @@
       </div>
     </section>
 
-    <div class="addStudent">
-
-
-    </div> -->
-
 </body>
 </html>
-
-<!-- <th>First Name</th>
-<th>Last Name</th>
-<th>Email</th>
-<th>Start Date</th>
-</thead>
-<tbody>
-<tr>
-  <td>Stephen</td>
-  <td>Buchner</td>
-  <td>websites@jonathanbuchner.com</td>
-  <td>2016-10-08</td>
-  <td><span class="glyphicon glyphicon-remove-circle"></span>
-  </tr>
-  <tr>
-    <td>Jonathan</td>
-    <td>Tory</td>
-    <td>websites@jonathanbuchner.com</td>
-    <td>2016-10-08</td>
-  </tr>
-</tbody> -->

@@ -20,13 +20,14 @@
   </section>
   <section class="module content">
     <div class="container section-container">
-      <table class="stupid test">
+      <h1>Students</h1>
+      <table class="stupid">
         <thead>
           <th data-sort="string">First Name</th>
           <th data-sort="string">Last Name</th>
           <th data-sort="string">Email</th>
           <th data-sort="string">Start Date</th>
-          <th>Delete / Edit</th>
+          <th>Delete</th>
         </thead>
         <tbody>
           <!-- ADD STUDENTS -->
@@ -49,14 +50,6 @@
           </tbody>
         </table>
         <h4>Add Student </h4>
-        <hr>
-        <form class="form-inline">
-          <div class="form-group">
-            <label class="sr-only" for="exampleInputEmail3">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-          </div>
-        </form>
-        <hr>
         <form class="form-inline" action="/add" method="post">
           <div class="form-group">
             <label class="sr-only" for="fname">First Name:</label>

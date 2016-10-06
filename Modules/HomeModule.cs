@@ -17,7 +17,6 @@ namespace Epicodus
       /////////////////////////////////////////////////////
       Get["/"] = _ => {
           Dictionary<string, object> model = ViewRoutes.IndexView();
-
           return View["index.cshtml", model];
       };
       Post["/add"] = _ => {
@@ -43,7 +42,7 @@ namespace Epicodus
         return View["index.cshtml", model];
       };
 
-      //DELETE all student *not working
+      //DELETE all student
       Post["/delete_all"] = _ => {
         Student.DeleteAll();
         Dictionary<string, object> model = ViewRoutes.IndexView();
@@ -71,7 +70,7 @@ namespace Epicodus
         Dictionary<string, object> model = ViewRoutes.IndexView();
         return View["index.cshtml", model];
       };
-      //DELETE all course *not working
+      //DELETE all course
       Post["/delete_all_course"] = _ => {
         Course.DeleteAll();
         Dictionary<string, object> model = ViewRoutes.IndexView();
@@ -109,7 +108,40 @@ namespace Epicodus
       //////////////////////////////////////////////////////
       /// Goes student.cshtml
       /////////////////////////////////////////////////////
+
+      Get["/student/{id}"] = parameters => {
+          Student student = Student.Find(parameters.id);
+          List<Course> courseList = student.GetCourses();
+          List<Project> projectList = student.GetProjects();
+          Dictionary<string, object> model = new Dictionary<string, object>{};
+          model.Add("courseList", courseList);
+          model.Add("projectList", projectList);
+          model.Add("student", student);
+          return View["student.cshtml", model];
+      };
+
+
+      Post["/update/{id}"] = parameters => {
+        Student student = Student.Find(parameters.id);
+        string fname = Request.Form["fname"];
+        string lname = Request.Form["lname"];
+        string email = Request.Form["email"];
+        string picture = Request.Form["picture"];
+        DateTime startDate = Request.Form["startDate"];
+        Student newStudent = new Student (fname, lname, email, picture, startDate);
+        newStudent.Save();
+        student.UpdateAll(newStudent);
+        List<Course> courseList = student.GetCourses();
+        List<Project> projectList = student.GetProjects();
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("courseList", courseList);
+        model.Add("projectList", projectList);
+        model.Add("student", student);
+        return View["student.cshtml", model];
+      };
+
       // Basic Link GetAll
+
       // link :homepage, courseslist, delete, project list?
       //UpdateAll student
       // add course to student
@@ -118,6 +150,16 @@ namespace Epicodus
       //////////////////////////////////////////////////////
       /// Goes Course.cshtml
       /////////////////////////////////////////////////////
+
+      Get["/course/{id}"] = parameters => {
+          Course course = Course.Find(parameters.id);
+          List<Student> studentList = course.GetStudents();
+          Dictionary<string, object> model = new Dictionary<string, object>{};
+          model.Add("studentList", studentList);
+          model.Add("course", course);
+          return View["course.cshtml", model];
+      };
+
       //link to getall course, homepage, studentlist, delete, project?
       //updateAll course
       //delete student from course
@@ -131,54 +173,7 @@ namespace Epicodus
       //add project
       // select project
 
-      //
-      //
-      // Post["/editAll"] = _ => {
-      //
-      // };
-
-      //
-      // Post["/add_course"] = _ => {
-      //
-      // };
-      // Post["/edit-course"] = _ => {
-      //
-      // };
-      // Post["/delete_course"] = _ => {
-      //
-      // };
-
-      // Post["/add-project"] = _ => {
-      //
-      // };
-      // Post["/edit-project"] = _ => {
-      //
-      // };
-      // Post["/delete-project"] = _ => {
-      //
-      // };
-      // Post["/deleteall-project"] = _ => {
-      //
-      // };
-      // Post["/add-student-to-course"] = _ => {
-      //
-      // };
-      // Post["/delete-student-to-course"] = _ => {
-      //
-      // };
-      // Post["/add_course-to-student"] = _ => {
-      //
-      // };
-      // Post["/delete_course-to-student"] = _ => {
-      //
-      // };
-      // Post["/add-project-to-student"] = _ => {
-      //
-      // };
-      // Post["/delete-project-to-student"] = _ => {
-      //
-      // };
-
+      
     }
   }
 }

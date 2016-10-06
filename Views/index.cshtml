@@ -36,7 +36,7 @@
           {
             <tr>
               <td ><img class="picture" src="@student.GetPicture()"></td>
-              <td >@student.GetFName()</td>
+              <td ><a href="student/@student.GetId()">@student.GetFName()</a></td>
               <td >@student.GetLName()</td>
               <td >@student.GetEmail()</td>
               <td >@student.GetStartDate()</td>
@@ -83,7 +83,7 @@
           <form  action="/delete_all" method="post">
             <button class="btn btn-primary" type="submit">Yes</button>
           </form>
-          
+
         </div>
       </div>
   </section>
@@ -112,7 +112,7 @@
                   @foreach (var course in  Model["courseList"])
                   {
                     <tr>
-                      <td>@course.GetName()</td>
+                      <td><a href="course/@course.GetId()">@course.GetName()</a></td>
                       <td>@course.GetStartDate()</td>
                       <td>@course.GetActive()</td>
                       <td>

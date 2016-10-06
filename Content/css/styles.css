@@ -300,3 +300,7 @@ section.module.content{
 .button:hover{
   background: #e3b067;
 }
+
+.textCenter{
+  text-align: center;
+}

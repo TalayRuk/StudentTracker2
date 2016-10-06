@@ -13,19 +13,28 @@ namespace Epicodus
         Dictionary<string, object> model = ViewRoutes.IndexView();
         return View["index.cshtml", model];
       };
-      Get["/add"] = _ => {
-
+      Post["/add"] = _ => {
         string fname = Request.Form["fname"];
-        string fname = Request.Form["lname"];
-        string fname = Request.Form["email"];
-        string fname = Request.Form["picture"];
-        string fname = Request.Form["starDate"];
+        string lname = Request.Form["lname"];
+        string email = Request.Form["email"];
+        string picture = Request.Form["picture"];
+        DateTime startDate = Request.Form["startDate"];
         Student student = new Student (fname, lname, email, picture, startDate);
         student.Save();
 
         Dictionary<string, object> model = ViewRoutes.IndexView();
         return View["index.cshtml", model];
-      }
+      };
+      Post["/delete"] = _ => {
+        string idstring = Request.Form["id"];
+        int id = Int32.Parse(idstring);
+        Console.WriteLine(id);
+        Student student = Student.Find(id);
+        student.DeleteOne();
+
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
 
     }
   }

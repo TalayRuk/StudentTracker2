@@ -24,7 +24,7 @@ GetPicture() | Get string "/img.student.jpg"
 GetStartDate() | Get DateTime date = new DateTime (2016, 08, 01)
 Save() | Insert student's properties into a specific student_id and save that student to the Table.
 UpdateAll(Student currentStudent) | Update all student's properties in the form, need to create form that already has the student information premade so the student can see what he/she is editing.
-DeleteOne() | Delete 1 student using student_id
+DeleteOne() | Delete 1 student using student_id @studentId
 AddCourse(Course newCourse) | Using student id and class id to add all properties of a course to the student in the Join Table students_courses. This method add new Course to a student.
 GetCourses() | Return List<Course from coursesList.Add(newCourse), by using select all courses from students_courses Join Table using student_id and course_id
  DeleteCourse (int classId) | Delete the individual course from a student; using class_id & student_id from students_courses Join Table. ie; student1.DeleteCourse(testCourses.GetId());

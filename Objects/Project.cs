@@ -238,30 +238,30 @@ namespace Epicodus
       SqlCommand cmd = new SqlCommand(query, conn);
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      Dictionary<string, var> dictionary = new Dictionary<string, var> {};
+      Dictionary<string, object> dictionary = new Dictionary<string, object> {};
 
       while( rdr.Read() )
       {
         int student_id = rdr.GetInt32(0);
         dictionary.Add("student_id",student_id);
-
-        string fname = rdr.GetString(1);
-        dictionary.Add("fname",fname);
-
-        string lname = rdr.GetString(2);
-        dictionary.Add("lname",lname);
-
-        string email = rdr.GetString(3);
-        dictionary.Add("email",email);
-
-        string picture = rdr.GetString(4)
-        dictionary.Add("picture",picture);
-
-        sdate date  = rdr.GetString()
-        dictionary.Add("",);
-
-        string  = rdr.GetString()
-        dictionary.Add("",);
+        //
+        // string fname = rdr.GetString(1);
+        // dictionary.Add("fname",fname);
+        //
+        // string lname = rdr.GetString(2);
+        // dictionary.Add("lname",lname);
+        //
+        // string email = rdr.GetString(3);
+        // dictionary.Add("email",email);
+        //
+        // string picture = rdr.GetString(4)
+        // dictionary.Add("picture",picture);
+        //
+        // sdate date  = rdr.GetString()
+        // dictionary.Add("",);
+        //
+        // string  = rdr.GetString()
+        // dictionary.Add("",);
       }
 
       if (rdr != null)

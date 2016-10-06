@@ -45,7 +45,7 @@ namespace Tests
     }
 
     [Fact]
-    public void Test_DeleteOneCourse()
+    public void Test4_DeleteOneCourse()
     {
       DateTime date = new DateTime (2016,10,3);
       Course newCourse = new Course("CourseName" , date, 2);
@@ -63,7 +63,7 @@ namespace Tests
     }
 
     [Fact]
-    public void Test_FindCourse()
+    public void Test5_FindCourse()
     {
       DateTime date = new DateTime (2016,10,3);
       Course newCourse = new Course("CourseName" , date, 2);
@@ -73,7 +73,7 @@ namespace Tests
     }
 
     [Fact]
-    public void Test_UpdateOneCourse()
+    public void Test6_UpdateOneCourse()
     {
       DateTime date = new DateTime (2016,10,3);
       Course testCourse = new Course("CourseName" , date, 2, 0);
@@ -84,8 +84,84 @@ namespace Tests
       testCourse.Update(newCourse2);
       Assert.Equal(testCourse, newCourse2);
     }
+    [Fact]
+    public void T8_AddStudent()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Course course1 = new Course("Intro", Date1, 1);
+      course1.Save();
+
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
+
+      Student student2 = new Student("Dan", "Lee", "dan@Lee.com", "/img/dan.jpg", Date1);
+      student2.Save();
+
+      //Act
+      course1.AddStudent(student1);
+      course1.AddStudent(student2);
 
 
+      List<Student> result = course1.GetStudents();
+      List<Student> test = new List<Student> {student1, student2};
+      // Console.WriteLine(result[0].GetId());
+      // Console.WriteLine(test[0].GetId());
+      // Console.WriteLine(result[0].GetName());
+      // Console.WriteLine(test[0].GetName());
+      // Console.WriteLine(result[0]. GetStartDate() );
+      // Console.WriteLine(test[0]. GetStartDate() );
+
+      //Assert
+      Assert.Equal(test, result);
+
+    }
+
+    [Fact]
+    public void T9_GetStudents()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Course course1 = new Course("Intro", Date1, 1);
+      course1.Save();
+
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
+
+      Student student2 = new Student("Dan", "Lee", "dan@Lee.com", "/img/dan.jpg", Date1);
+      student2.Save();
+
+
+      //Act
+      course1.AddStudent(student1);
+
+      List<Student> result = course1.GetStudents();
+      List<Student> test = new List<Student> {student1};
+
+      //Assert
+      Assert.Equal(test, result);
+    }
+
+    [Fact]
+    public void T10_DeleteCourse()
+    {
+      //Assert
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Course testCourse = new Course("Intro", Date1, 1);
+      testCourse.Save();
+
+      Student student1 = new Student("Jon", "Jone", "jon@Jone.com", "/img/jon.jpg", Date1);
+      student1.Save();
+
+
+      //Act
+      testCourse.AddStudent(student1);
+      testCourse.DeleteStudent( student1.GetId() );
+      int result = testCourse.GetStudents().Count;
+
+      //Assert
+      Assert.Equal(0, result);
+    }
     public void Dispose()
     {
       Project.DeleteAll();

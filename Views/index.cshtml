@@ -1,99 +1,135 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Templates</title>
-    <link rel="stylesheet" href="https://bootswatch.com/readable/bootstrap.min.css" >
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Noto+Sans'  type='text/css'>
-    <link rel="stylesheet" href="../Content/css/styles.css" >
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
-    <script src="../Content/js/easyTable.js"></script>
-    <script src="Content/js/scripts.js"></script>
-  </head>
-  <body>
-    <section class="module parallax parallax-1">
-      <div class="container">
-        <h1 id="brand"></h1>
-      </div>
-    </section>
-    <section class="module content">
-     <div class="container section-container">
-       <table id="table">
-         <thead>
-           <th>First Name</th>
-           <th>Last Name</th>
-           <th>Email</th>
-           <th>Start Date</th>
-         </thead>
-         <tbody>
-           @foreach(var student in Model["studentList"] )
-           {
-           <tr>
-             <td>@student.GetFName()</td>
-             <td>@student.GetLName()</td>
-             <td>@student.GetEmail()</td>
-             <td>@student.GetStartDate()</td>
-             <td><span class="glyphicon glyphicon-remove-circle"></span>
-           </tr>
-          }
-         </tbody>
-       </table>
-       <br>
-       <br>
-       <button class="btn btn-primary" id="getSelected">Get Selected</button>
-      </div>
-   </section>
-   <section class="module parallax parallax-1">
-     <div class="container">
-       <h1 id="brand"></h1>
-     </div>
-   </section>
-   <section class="module content">
-    <div class="container section-container">
-      <div class="container section-container">
-        <table >
-          <thead>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Start Date</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Stephen</td>
-              <td>Buchner</td>
-              <td>websites@jonathanbuchner.com</td>
-              <td>2016-10-08</td>
-              <td><span class="glyphicon glyphicon-remove-circle"></span>
-            </tr>
-            <tr>
-              <td>Jonathan</td>
-              <td>Tory</td>
-              <td>websites@jonathanbuchner.com</td>
-              <td>2016-10-08</td>
-            </tr>
-          </tbody>
-        </table>
-        <br>
-        <br>
-        <button class="btn btn-primary" id="getSelected">Get Selected</button>
-    </div>
-  </section>
+<head>
+  <meta charset="utf-8">
+  <title>Templates</title>
+  <link rel="stylesheet" href="https://bootswatch.com/readable/bootstrap.min.css" >
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Noto+Sans'  type='text/css'>
+  <link rel="stylesheet" href="../Content/css/styles.css" >
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+  <script src="../Content/js/easyTable.js"></script>
+  <script src="Content/js/scripts.js"></script>
+</head>
+<body>
   <section class="module parallax parallax-1">
     <div class="container">
       <h1 id="brand"></h1>
     </div>
   </section>
   <section class="module content">
-   <div class="container section-container">
-     <div class="city-output">
-       <h1></h1>
-       <p>
-       </p>
-     </div>
-   </div>
- </section>
-  </body>
+    <div class="container section-container">
+      <table id="table">
+        <thead>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Start Date</th>
+        </thead>
+        <tbody>
+          @foreach(var student in Model["studentList"] )
+          {
+            <tr>
+              <td>@student.GetFName()</td>
+              <td>@student.GetLName()</td>
+              <td>@student.GetEmail()</td>
+              <td>@student.GetStartDate()</td>
+              <td>
+                <form action="/delete" method = "post">
+                <!-- <input type="hidden" name="_method" value="DELETE"> -->
+                <input type="hidden" name="id" value="@student.GetId()">
+                <button type="submit" class="glyphicon glyphicon-remove-circle"></button>
+              </form>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+        <br>
+        <br>
+        <button class="btn btn-primary" id="getSelected">Get Selected</button>
+        <h4>Add Student </h4>
+        <form class="form-inline" action="/add" method="post">
+          <div class="form-group">
+            <label for="fname">First Name:</label>
+            <input type="text" class="form-control" id="fname" name="fname">
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name:</label>
+            <input type="text" class="form-control" id="lname" name="lname">
+          </div>
+          <div>
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email">
+          </div>
+          <div>
+            <label for="picture">Picture file name:</label>
+            <input type="url" class="form-control" id="picture" name="picture">
+          </div>
+          <div>
+            <label for="startDate">Start Date:</label>
+            <input type="date" class="form-control" id="startDate" name="startDate">
+          </div>
+          <button type="submit" class="btn btn-default">Add Student</button>
+        </form>
+      </div>
+    </section>
+    <section class="module parallax parallax-1">
+      <div class="container">
+        <h1 id="brand"></h1>
+      </div>
+    </section>
+    <section class="module content">
+      <div class="container section-container">
+        <div class="container section-container">
+          <table CLASS="stupid">
+            <thead>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Start Date</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Stephen</td>
+                <td>Buchner</td>
+                <td>websites@jonathanbuchner.com</td>
+                <td>2016-10-08</td>
+                <td><span class="glyphicon glyphicon-remove-circle"></span>
+                </tr>
+                <tr>
+                  <td>Jonathan</td>
+                  <td>Tory</td>
+                  <td>websites@jonathanbuchner.com</td>
+                  <td>2016-10-08</td>
+                </tr>
+              </tbody>
+          </table>
+          <br>
+          <br>
+          <button class="btn btn-primary" id="getSelected">Get Selected</button>
+        </div>
+    </section>
+    <section class="module parallax parallax-1">
+      <div class="container">
+        <h1 id="brand"></h1>
+      </div>
+    </section>
+    <section class="module content">
+      <div class="container section-container">
+        <div class="city-output">
+          <h1></h1>
+          <p>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="addStudent">
+
+
+    </div>
+
+</body>
 </html>

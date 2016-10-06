@@ -223,6 +223,75 @@ namespace Epicodus
       }
     }
 
+    public void AddStudent(Student newStudent)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO students_courses (student_id, class_id) VALUES (@studentId, @classId);", conn);
+
+      cmd.Parameters.Add(new SqlParameter("@classId", this.GetId()));
+      cmd.Parameters.Add(new SqlParameter("@studentId", newStudent.GetId()));
+      cmd.ExecuteNonQuery();
+
+
+      conn.Close();
+
+    }
+
+    public List<Student> GetStudents()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT students.* FROM courses JOIN students_courses ON courses.id = students_courses.class_id JOIN students ON students.id = students_courses.student_id WHERE courses.id = @classId;", conn);
+
+      cmd.Parameters.Add(new SqlParameter("@classId", this.GetId())); //*when error cannot convert from 'int' to 'System.Data.SqlClient.SqlConnection b/c**SqlParameter spell wrong!
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Student> studentsList = new List<Student> {};
+
+      while ( rdr.Read() )
+      {
+        int studentId = rdr.GetInt32(0);
+        string firstName = rdr.GetString(1);
+        string lastName = rdr.GetString(2);
+        string email = rdr.GetString(3);
+        string picture = rdr.GetString(4);
+        DateTime startDate = rdr.GetDateTime(5);
+        Student newStudent = new Student(firstName, lastName, email, picture, startDate, studentId);
+        studentsList.Add(newStudent);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      return studentsList;
+    }
+
+    public void DeleteStudent( int studentId )
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM students_courses WHERE student_id = @studentId AND class_id = @classId;", conn);
+
+      cmd.Parameters.Add(new SqlParameter("@studentId", studentId ) );
+      cmd.Parameters.Add(new SqlParameter("@classId", this.GetId()));
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+
 
   }
 }

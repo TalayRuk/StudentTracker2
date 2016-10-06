@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using Nancy;
 
 namespace Epicodus
 {
-  public class ViewRoutes
+  public class ViewRoutes : NancyModule
   {
     public static Dictionary<string, object> IndexView()
     {

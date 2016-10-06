@@ -30,7 +30,7 @@ section.module.parallax-1 {
 /**********************************
 ***For Hero Image
 ***********************************/
-body{ margin:0px 0px; }
+/*body{ margin:0px 0px; }
 
 #hero{
   background-image:url(https://static1.squarespace.com/static/5524448ee4b0d6f6b83ab9e2/t/5554e1d9e4b0f33dbaf8d031/1431626275703/DSC00085.JPG?format=1500w);
@@ -47,9 +47,9 @@ body{ margin:0px 0px; }
   color:#fff;
   font-size:36px;
   -ms-transform: translate(0,-50%); /* IE 9 */
-    -webkit-transform: translate(0,-50%); /* Safari */
-    transform: translate(0,-50%);
-}
+    /*-webkit-transform: translate(0,-50%); /* Safari */
+    /*transform: translate(0,-50%);*/
+/*}
 
 .content{
   padding:100px 50px;
@@ -60,7 +60,7 @@ body{ margin:0px 0px; }
 
 .content h2{
   margin:0px 0px 30px 0px;
-}
+}*/
 
 /**********************************
 ***Pop Up Slider
@@ -76,7 +76,7 @@ body{ margin:0px 0px; }
   transform: translateX(0) translateY(-40%);
   background-color: rgba(255,255,255,1);
   border-radius: 40px;
-  margin: 40px;
+  margin: 100px;
   padding: 20px;
 }
 .popup_visible #slide {
@@ -102,7 +102,7 @@ body{ margin:0px 0px; }
 	line-height: 24px;
 	margin: 30px auto;
 	text-align: left;
-	width: 300px;
+	/*width: 300px;*/
 }
 
 .stupid th {

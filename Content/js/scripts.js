@@ -2,7 +2,7 @@
 
 $(function() {
 
-  // $("#table").easyTable();
+  $("table").stupidtable();
 
   //For Example popupoverlay
   $('#example_popup').popup({

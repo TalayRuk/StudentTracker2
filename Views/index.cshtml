@@ -9,7 +9,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
-  <script src="../Content/js/easyTable.js"></script>
+  <script src="../Content/js/stupidTable.js"></script>
   <script src="Content/js/scripts.js"></script>
 </head>
 <body>
@@ -20,21 +20,22 @@
   </section>
   <section class="module content">
     <div class="container section-container">
-      <table id="table">
+      <table class="stupid test">
         <thead>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Start Date</th>
+          <th data-sort="string">First Name</th>
+          <th data-sort="string">Last Name</th>
+          <th data-sort="string">Email</th>
+          <th data-sort="string">Start Date</th>
+          <th>Delete / Edit</th>
         </thead>
         <tbody>
           @foreach(var student in Model["studentList"] )
           {
             <tr>
-              <td>@student.GetFName()</td>
-              <td>@student.GetLName()</td>
-              <td>@student.GetEmail()</td>
-              <td>@student.GetStartDate()</td>
+              <td >@student.GetFName()</td>
+              <td >@student.GetLName()</td>
+              <td >@student.GetEmail()</td>
+              <td >@student.GetStartDate()</td>
               <td>
                 <form action="/delete" method = "post">
                 <!-- <input type="hidden" name="_method" value="DELETE"> -->
@@ -46,10 +47,15 @@
             }
           </tbody>
         </table>
-        <br>
-        <br>
-        <button class="btn btn-primary" id="getSelected">Get Selected</button>
         <h4>Add Student </h4>
+        <hr>
+        <form class="form-inline">
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail3">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+          </div>
+        </form>
+        <hr>
         <form class="form-inline" action="/add" method="post">
           <div class="form-group">
             <label for="fname">First Name:</label>
@@ -83,11 +89,11 @@
     <section class="module content">
       <div class="container section-container">
         <div class="container section-container">
-          <table CLASS="stupid">
+          <table class="stupid">
             <thead>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
+              <th data-sort="string">First Name</th>
+              <th data-sort="string">Last Name</th>
+              <th data-sort="string">Email</th>
               <th>Start Date</th>
             </thead>
             <tbody>

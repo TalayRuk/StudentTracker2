@@ -229,7 +229,7 @@ namespace Epicodus
       conn.Close();
     }
 
-    public static Dictionary<string, object> GetSCG()
+    public static Dictionary<string, int> GetSCG()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
@@ -238,13 +238,13 @@ namespace Epicodus
       SqlCommand cmd = new SqlCommand(query, conn);
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      Dictionary<string, object> dictionary = new Dictionary<string, object> {};
+      Dictionary<string, int> dictionary = new Dictionary<string, int> {};
 
       while( rdr.Read() )
       {
-        int student_id = rdr.GetInt32(0);
-        dictionary.Add("student_id",student_id);
-        //
+        int students_id = rdr.GetInt32(0);
+        dictionary.Add("students_id",students_id);
+
         // string fname = rdr.GetString(1);
         // dictionary.Add("fname",fname);
         //
@@ -257,11 +257,14 @@ namespace Epicodus
         // string picture = rdr.GetString(4)
         // dictionary.Add("picture",picture);
         //
-        // sdate date  = rdr.GetString()
-        // dictionary.Add("",);
+        // DateTime student_sdate  = rdr.GetDateTime(5);
+        // student_sdate date.ToString();
+        // dictionary.Add("students_sdate", student_sdate);
         //
-        // string  = rdr.GetString()
-        // dictionary.Add("",);
+        // students_courses_id
+        // student_courses_student_id
+        // studetn_courses_class
+
       }
 
       if (rdr != null)

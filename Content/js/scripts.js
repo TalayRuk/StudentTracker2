@@ -9,7 +9,7 @@ $(function() {
     color: 'white',
     opacity: .8,
     transition: '0.5s',
-    scrolllock: true
+
   });
 
   //For popup slider
@@ -17,6 +17,16 @@ $(function() {
   outline: false, // optional
   focusdelay: 400, // optional
   vertical: 'top', //optional
-  blur: true
+  scrolllock: true,
+  blur:true
+  });
+
+  //For course popup slider
+  $('#slide1').popup({
+  outline: false, // optional
+  focusdelay: 400, // optional
+  vertical: 'top', //optional
+  scrolllock: true,
+  blur:true
   });
 });

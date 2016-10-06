@@ -81,14 +81,15 @@ namespace Epicodus
       /// Goes student.cshtml
       /////////////////////////////////////////////////////
 
-      Get["/student"] = _ => {
-          
-          Student student = Student.Find(    //id    );
-          Dictionary<string, object> model = ViewRoutes.StudentView();
+      Get["/student/{id}"] = parameters => {
+          Student student = Student.Find(parameters.id);
+          List<Course> courseList = student.GetCourses();
+          List<Project> projectList = student.GetProjects();
+          Dictionary<string, object> model = new Dictionary<string, object>{};
+          model.Add("courseList", courseList);
+          model.Add("projectList", projectList);
           model.Add("student", student);
           return View["student.cshtml", model];
-          // return View["student.cshtml"];
-
       };
 
 

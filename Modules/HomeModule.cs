@@ -43,14 +43,14 @@ namespace Epicodus
         return View["index.cshtml", model];
       };
 
-      //DELETE all course *not working
-      Post["/delete-all"] = _ => {
+      //DELETE all student *not working
+      Post["/delete_all"] = _ => {
         Student.DeleteAll();
         Dictionary<string, object> model = ViewRoutes.IndexView();
         return View["index.cshtml", model];
       };
       //Add Course
-      Post["/add-course"] = _ => {
+      Post["/add_course"] = _ => {
         string name = Request.Form["name"];
         DateTime startDate = Request.Form["start-Date"];
         string activeString = Request.Form["active"];
@@ -62,7 +62,7 @@ namespace Epicodus
         return View["index.cshtml", model];
       };
       // Delete One course
-      Post["/delete-course"] = _ => {
+      Post["/delete_course"] = _ => {
         string idString = Request.Form["id"];
         int id = Int32.Parse(idString);
         Course course = Course.Find(id);
@@ -71,7 +71,12 @@ namespace Epicodus
         Dictionary<string, object> model = ViewRoutes.IndexView();
         return View["index.cshtml", model];
       };
-
+      //DELETE all course *not working
+      Post["/delete_all"] = _ => {
+        Course.DeleteAll();
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
 
       //////////////////////////////////////////////////////
       /// Goes student.cshtml
@@ -105,13 +110,13 @@ namespace Epicodus
       // };
 
       //
-      // Post["/add-course"] = _ => {
+      // Post["/add_course"] = _ => {
       //
       // };
       // Post["/edit-course"] = _ => {
       //
       // };
-      // Post["/delete-course"] = _ => {
+      // Post["/delete_course"] = _ => {
       //
       // };
 
@@ -133,10 +138,10 @@ namespace Epicodus
       // Post["/delete-student-to-course"] = _ => {
       //
       // };
-      // Post["/add-course-to-student"] = _ => {
+      // Post["/add_course-to-student"] = _ => {
       //
       // };
-      // Post["/delete-course-to-student"] = _ => {
+      // Post["/delete_course-to-student"] = _ => {
       //
       // };
       // Post["/add-project-to-student"] = _ => {

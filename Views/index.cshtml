@@ -79,7 +79,7 @@
         <button class="slide_open btn btn-primary">Delete All Students</button>
         <div id="slide">
           <h2>Are you sure you want to delete all students?</h2>
-          <form  action="/delete-all" method="post">
+          <form  action="/delete_all" method="post">
             <!-- <input type="hidden"  value="DELETE"> -->
             <button class="btn btn-primary" type="submit">Yes</button>
             <button class="btn btn-primary" <a href="/"> </a>>No</button>
@@ -115,7 +115,7 @@
                       <td>@course.GetActive()</td>
                       <td>
                         <!-- DELETE A COURSE -->
-                        <form action="/delete-course" method = "post">
+                        <form action="/delete_course" method = "post">
                           <input type="hidden" name="id" value="@course.GetId()">
                           <button type="submit" class="glyphicon glyphicon-remove-circle"></button>
                         </form>
@@ -128,7 +128,7 @@
           </table>
           <br>
           <h4>Add Course </h4>
-          <form class="form-inline" action="/add-course" method="post">
+          <form class="form-inline" action="/add_course" method="post">
             <div class="form-group">
               <label class="sr-only" for="name">Name:</label>
               <input type="text" class="form-control" id="name" name="name" placeholder="Course Name">
@@ -145,11 +145,11 @@
           </form>
           <br>
           <!-- Delete ALL COURSES -->
-          <!-- <button class="slide_open btn btn-primary">Delete All Courses</button>
+          <button class="slide_open btn btn-primary">Delete All Courses</button>
           <div id="slide">
             <h2>Are you sure you want to delete all COURSES?</h2>
-            <form  action="/delete-all" method="post">
-              <!-- <input type="hidden"  value="DELETE"> -->
+            <form  action="/delete_all_course" method="post">
+              <!-- <input type="hidden"  value="Post"> -->
               <button class="btn btn-primary" type="submit">Yes</button>
               <button class="btn btn-primary" <a href="/"> </a>>No</button>
             </form>

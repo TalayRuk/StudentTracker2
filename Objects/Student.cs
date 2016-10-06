@@ -303,6 +303,39 @@ namespace Epicodus
       }
     }
 
+    public List<Project> GetProjects()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT projects.* FROM STUDENTS JOIN STUDENTS_COURSES ON STUDENTS.id = STUDENTS_COURSES.student_id JOIN COURSES ON COURSES.id = STUDENTS_COURSES.class_id JOIN SCG ON SCG.students_courses_id = STUDENTS_COURSES.id JOIN PROJECTS on PROJECTS.id = SCG.projects_id WHERE students.id = @studentId;", conn);
+
+      cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId())); //*when error cannot convert from 'int' to 'System.Data.SqlClient.SqlConnection b/c**SqlParameter spell wrong!
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Project> projectList = new List<Project> {};
+
+      while ( rdr.Read() )
+      {
+        int projectId = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        DateTime date = rdr.GetDateTime(2);
+        Project newProject = new Project(name, date, projectId);
+        projectList.Add(newProject);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      return projectList;
+    }
+
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

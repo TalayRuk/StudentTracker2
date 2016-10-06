@@ -229,52 +229,52 @@ namespace Epicodus
       conn.Close();
     }
 
-    public static Dictionary<string, object> GetSCG()
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-
-      string query =  "SELECT scg.id FROM STUDENTS JOIN STUDENTS_COURSES ON STUDENTS.id = STUDENTS_COURSES.student_id JOIN COURSES ON COURSES.id = STUDENTS_COURSES.class_id JOIN SCG ON SCG.students_courses_id = STUDENTS_COURSES.id JOIN PROJECTS on PROJECTS.id = SCG.projects_id;";
-      SqlCommand cmd = new SqlCommand(query, conn);
-      SqlDataReader rdr = cmd.ExecuteReader();
-
-      Dictionary<string, object> dictionary = new Dictionary<string, object> {};
-
-      while( rdr.Read() )
-      {
-        int student_id = rdr.GetInt32(0);
-        dictionary.Add("student_id",student_id);
-        //
-        // string fname = rdr.GetString(1);
-        // dictionary.Add("fname",fname);
-        //
-        // string lname = rdr.GetString(2);
-        // dictionary.Add("lname",lname);
-        //
-        // string email = rdr.GetString(3);
-        // dictionary.Add("email",email);
-        //
-        // string picture = rdr.GetString(4)
-        // dictionary.Add("picture",picture);
-        //
-        // sdate date  = rdr.GetString()
-        // dictionary.Add("",);
-        //
-        // string  = rdr.GetString()
-        // dictionary.Add("",);
-      }
-
-      if (rdr != null)
-      {
-        rdr.Close();
-      }
-
-      if (conn != null)
-      {
-        conn.Close();
-      }
-      return dictionary;
-    }
+//     public static Dictionary<string, string> GetSCG()
+//     {
+//       SqlConnection conn = DB.Connection();
+//       conn.Open();
+//
+//       string query =  "
+// SELECT
+// students.id,students.fname,students.lname,students.email,students.picture,students.sdate,students_courses.id,students_courses.student_id,students_courses.class_id,courses.id,courses.name,courses.sdate,courses.active,scg.id,scg.students_courses_id,scg.projects_id,scg.grade, projects.id, projects.name, projects.date FROM STUDENTS JOIN STUDENTS_COURSES ON STUDENTS.id = STUDENTS_COURSES.student_id JOIN COURSES ON COURSES.id = STUDENTS_COURSES.class_id JOIN SCG ON SCG.students_courses_id = STUDENTS_COURSES.id JOIN PROJECTS on PROJECTS.id = SCG.projects_id;";
+//       SqlCommand cmd = new SqlCommand(query, conn);
+//       SqlDataReader rdr = cmd.ExecuteReader();
+//
+//       Dictionary<string, string> dictionary = new Dictionary<string, string> {};
+//
+//       while( rdr.Read() )
+//       {
+//         string students_id = rdr.GetInt32(0).ToString();
+//         dictionary.Add("students_id",students_id);
+//
+//         string students_fname = rdr.GetString(1);
+//         dictionary.Add("students_fname", students_fname);
+//
+//         string students_lname = rdr.GetString(2);
+//         dictionary.Add("students_lname",students_lname);
+//
+//         string students.email = rdr.GetString(3);
+//         dictionary.Add("students.email,",students.email);
+//
+//         string students.picture = rdr.GetString(4);
+//         dictionary.Add("students.picture",students.picture);
+//
+//         string students.sdate = rdr.GetDateTime(5).ToString();
+//         dictionary.Add("students_id",students.sdate);
+//
+//       }
+    // 
+    //   if (rdr != null)
+    //   {
+    //     rdr.Close();
+    //   }
+    //
+    //   if (conn != null)
+    //   {
+    //     conn.Close();
+    //   }
+    //   return dictionary;
+    // }
 
     public static void DeleteSCG()
     {

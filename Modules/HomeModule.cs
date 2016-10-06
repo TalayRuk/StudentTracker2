@@ -17,7 +17,6 @@ namespace Epicodus
       /////////////////////////////////////////////////////
       Get["/"] = _ => {
           Dictionary<string, object> model = ViewRoutes.IndexView();
-
           return View["index.cshtml", model];
       };
       Post["/add"] = _ => {
@@ -52,7 +51,20 @@ namespace Epicodus
       //////////////////////////////////////////////////////
       /// Goes student.cshtml
       /////////////////////////////////////////////////////
+
+      Get["/student"] = _ => {
+          
+          Student student = Student.Find(    //id    );
+          Dictionary<string, object> model = ViewRoutes.StudentView();
+          model.Add("student", student);
+          return View["student.cshtml", model];
+          // return View["student.cshtml"];
+
+      };
+
+
       // Basic Link GetAll
+
       // link :homepage, courseslist, delete, project list?
       //UpdateAll student
       // add course to student

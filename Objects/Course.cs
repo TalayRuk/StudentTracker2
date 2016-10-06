@@ -204,7 +204,7 @@ namespace Epicodus
       cmd.Parameters.Add(new SqlParameter("@NewName", newCourse.GetName() ));
       cmd.Parameters.Add(new SqlParameter("@Date", newCourse.GetStartDate() ));
       cmd.Parameters.Add(new SqlParameter("@Active", newCourse.GetActive() ));
-      cmd.Parameters.Add(new SqlParameter("@Id", newCourse.GetId() ));
+      cmd.Parameters.Add(new SqlParameter("@Id", this.GetId() ));
 
       SqlDataReader rdr = cmd.ExecuteReader();
 

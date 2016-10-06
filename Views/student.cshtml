@@ -29,25 +29,25 @@
     <form class="form-inline" action='/update/@Model["student"].GetId()' method="post">
       <div class="form-group">
         <label for="fname">First Name:</label>
-        <input type="text" class="form-control" id="fname" name="fname" placeholder=@Model["student"].GetFName()>
+        <input type="text" class="form-control" id="fname" name="fname" value='@Model["student"].GetFName()'>
       </div>
       <div class="form-group">
         <label for="lname">Last Name:</label>
-        <input type="text" class="form-control" id="lname" name="lname" placeholder=@Model["student"].GetLName()>
+        <input type="text" class="form-control" id="lname" name="lname" value='@Model["student"].GetLName()'>
       </div>
       <div>
         <label for="email">Email:</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder=@Model["student"].GetEmail()>
+        <input type="email" class="form-control" id="email" name="email" value='@Model["student"].GetEmail()'>
       </div>
       <div>
         <label for="picture">Picture file name:</label>
-        <input type="url" class="form-control" id="picture" name="picture" placeholder=@Model["student"].GetPicture()>
+        <input type="url" class="form-control" id="picture" name="picture" value='@Model["student"].GetPicture()'>
       </div>
       <div>
         <label for="startDate">Start Date:</label>
         <input type="date" class="form-control" id="startDate" name="startDate" >
       </div>
-      <button type="submit" class="btn btn-default">Update This Student</button>
+      <button type="submit" class="btn btn-primary">Update This Student</button>
     </form>
   </section>
 

@@ -26,7 +26,35 @@
 
     <h1>@Model["course"].GetName()</h1>
 
-  <h3>Form to update</h3>
+
+
+
+
+  </form>
+  <hr>
+  <form class="form-inline" action='/update/@Model["course"].GetId()' method="post">
+    <div class="form-group">
+      <input type="hidden" name="_method" value="PATCH">
+      <label for="name">First Name:</label>
+      <input type="text" class="form-control" id="name" name="name" value='@Model["course"].GetName()'>
+    </div>
+    <div>
+      <label for="sdate">Start Date:</label>
+      <input type="date" class="form-control" id="sdate" name="sdate" value='@Model["course"].GetStartDate()'>
+    </div>
+    <div>
+      <label for="active">Active Status:</label>
+      <input type="text" class="form-control" id="active" name="active" value='@Model["course"].GetActive()'>
+    </div>
+    <button type="submit" class="btn btn-default">Update This Course</button>
+  </form>
+</section>
+
+
+
+
+
+
 
   </section>
 

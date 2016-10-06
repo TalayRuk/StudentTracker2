@@ -160,6 +160,23 @@ namespace Epicodus
           return View["course.cshtml", model];
       };
 
+
+      Patch["/update/{id}"] = parameters => {
+        Course course = Course.Find(parameters.id);
+        string name = Request.Form["name"];
+        int active = Request.Form["active"];
+        DateTime sdate = Request.Form["sdate"];
+        Course newCourse = new Course (name, sdate, active);
+        // newCourse.Save(); //?????
+        course.Update(newCourse);
+        List<Student> studentList = course.GetStudents();
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("studentList", studentList);
+        model.Add("course", course);
+        return View["course.cshtml", model];
+    };
+
+
       //link to getall course, homepage, studentlist, delete, project?
       //updateAll course
       //delete student from course
@@ -173,7 +190,7 @@ namespace Epicodus
       //add project
       // select project
 
-      
+
     }
   }
 }

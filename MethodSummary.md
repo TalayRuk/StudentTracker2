@@ -1,3 +1,6 @@
+### Methods Student
+
+
 ### Fields
 * private int _id;
 * private string _firstName;
@@ -7,7 +10,6 @@
 * private DateTime _startDate;_
 
 
-### Methods
 ###### Constructor:
 * public Student(string firstName, string lastName, string email, string picture, DateTime startDate, int id = 0)
 for Join Table using Course

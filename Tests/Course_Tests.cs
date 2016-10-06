@@ -85,9 +85,14 @@ namespace Tests
       Assert.Equal(testCourse, newCourse2);
     }
 
+
     public void Dispose()
     {
+      Project.DeleteAll();
+      Student.DeleteAll();
       Course.DeleteAll();
     }
+
+
   }
 }

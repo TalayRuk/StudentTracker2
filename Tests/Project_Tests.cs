@@ -72,10 +72,60 @@ namespace Tests
 
       Assert.Equal(testProject, newProject);
     }
+    [Fact]
+    public void Test_AddCourseStudent_CanWeAddACourseStudentAndProjectToDatabase()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student = new Student("John", "Doe", "jonny@Jone.com", "/img/jon.jpg", Date1);
+      student.Save();
+
+      DateTime date = new DateTime (2016,10,3);
+      Course newCourse = new Course("Anthropolgy" , date, 2);
+      newCourse.Save();
+
+      DateTime Date = new DateTime(2016,10,3);
+      Project testProject = new Project("DiceGame", Date);
+      testProject.Save();
+
+      student.AddCourse(newCourse);
+      //Act
+      testProject.AddCourseStudent( student.GetId(), newCourse.GetId(), "Meets Expectations" );
+      //Assert
+      int rows = Project.GetSCG().Count;
+      Assert.Equal(1,rows);
+    }
+
+    [Fact]
+    public void Test_GetAllCourseStudent_CanWeGetAllStudentsAndCourse()
+    {
+      //Arrange
+      DateTime Date1 = new DateTime (2016, 08, 01);
+      Student student = new Student("John", "Doe", "jonny@Jone.com", "/img/jon.jpg", Date1);
+      student.Save();
+
+      DateTime date = new DateTime (2016,10,3);
+      Course newCourse = new Course("Anthropolgy" , date, 2);
+      newCourse.Save();
+
+      DateTime Date = new DateTime(2016,10,3);
+      Project testProject = new Project("DiceGame", Date);
+      testProject.Save();
+
+      student.AddCourse(newCourse);
+      //Act
+      int rows = Project.GetSCG().Count;
+      Assert.Equal(0,rows);
+    }
+
+
 
     public void Dispose()
     {
+      Project.DeleteSCG();
       Project.DeleteAll();
+      Student.DeleteAll();
+      Course.DeleteAll();
     }
   }
 }

@@ -204,9 +204,10 @@ namespace Tests
 
     public void Dispose()
     {
+      Project.DeleteSCG();
+      Project.DeleteAll();
       Student.DeleteAll();
       Course.DeleteAll();
-      // Project.DeleteAll();
     }
   }
 }

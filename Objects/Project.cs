@@ -192,5 +192,96 @@ namespace Epicodus
         conn.Close();
       }
     }
+    public void AddCourseStudent(int student_id, int class_id, string grade )
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      string query =  "SELECT id FROM students_courses WHERE student_id = @student_id AND class_id = @class_id;";
+      SqlCommand cmd = new SqlCommand(query, conn);
+      cmd.Parameters.Add(new SqlParameter("@student_id", student_id ));
+      cmd.Parameters.Add(new SqlParameter("@class_id", class_id ));
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int id = 0;
+      while( rdr.Read() )
+      {
+        id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      conn.Open();
+
+      string query1 = "INSERT INTO scg (students_courses_id, projects_id, grade) VALUES (@id, @project_id, @grade);";
+      SqlCommand cmd2 = new SqlCommand(query1, conn);
+      cmd2.Parameters.Add(new SqlParameter("@id", id ));
+      cmd2.Parameters.Add(new SqlParameter("@project_id", this.GetId() ));
+      cmd2.Parameters.Add(new SqlParameter("@grade", grade ));
+      cmd2.ExecuteNonQuery();
+
+      conn.Close();
+    }
+
+    public static Dictionary<string, object> GetSCG()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      string query =  "SELECT scg.id FROM STUDENTS JOIN STUDENTS_COURSES ON STUDENTS.id = STUDENTS_COURSES.student_id JOIN COURSES ON COURSES.id = STUDENTS_COURSES.class_id JOIN SCG ON SCG.students_courses_id = STUDENTS_COURSES.id JOIN PROJECTS on PROJECTS.id = SCG.projects_id;";
+      SqlCommand cmd = new SqlCommand(query, conn);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      Dictionary<string, var> dictionary = new Dictionary<string, var> {};
+
+      while( rdr.Read() )
+      {
+        int student_id = rdr.GetInt32(0);
+        dictionary.Add("student_id",student_id);
+
+        string fname = rdr.GetString(1);
+        dictionary.Add("fname",fname);
+
+        string lname = rdr.GetString(2);
+        dictionary.Add("lname",lname);
+
+        string email = rdr.GetString(3);
+        dictionary.Add("email",email);
+
+        string picture = rdr.GetString(4)
+        dictionary.Add("picture",picture);
+
+        sdate date  = rdr.GetString()
+        dictionary.Add("",);
+
+        string  = rdr.GetString()
+        dictionary.Add("",);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return dictionary;
+    }
+
+    public static void DeleteSCG()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd1 = new SqlCommand("DELETE FROM scg;", conn);
+      cmd1.ExecuteNonQuery();
+    }
   }
 }

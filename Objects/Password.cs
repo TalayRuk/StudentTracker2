@@ -89,7 +89,7 @@ namespace Epicodus
     SqlConnection conn = DB.Connection();
     conn.Open();
 
-    SqlCommand cmd = new SqlCommand("SELECT * FROM passwords WHERE id = @id;");
+    SqlCommand cmd = new SqlCommand("SELECT * FROM passwords WHERE id = @id;" ,conn);
 
     cmd.Parameters.Add(new SqlParameter("@id", id));
     SqlDataReader rdr = cmd.ExecuteReader();
@@ -122,7 +122,7 @@ namespace Epicodus
     SqlConnection conn = DB.Connection();
     conn.Open();
 
-    SqlCommand cmd = new SqlCommand("INSERT INTO passwords (user_Name, user_Pasword) OUTPUT INSERTED.id VALUES (@username, @pasword);",conn);
+    SqlCommand cmd = new SqlCommand("INSERT INTO passwords (user_Name, user_Password) OUTPUT INSERTED.id VALUES (@username, @password);",conn);
 
     cmd.Parameters.Add(new SqlParameter("@username", this.GetUserName()));
     cmd.Parameters.Add(new SqlParameter("@password", this.GetPassword()));

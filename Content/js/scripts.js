@@ -29,4 +29,13 @@ $(function() {
   scrolllock: true,
   blur:true
   });
+
+  //For course popup slider
+  $('#slide2').popup({
+  outline: false, // optional
+  focusdelay: 400, // optional
+  vertical: 'top', //optional
+  scrolllock: true,
+  blur:true
+  });
 });

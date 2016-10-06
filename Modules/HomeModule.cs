@@ -72,11 +72,39 @@ namespace Epicodus
         return View["index.cshtml", model];
       };
       //DELETE all course *not working
-      Post["/delete_all"] = _ => {
+      Post["/delete_all_course"] = _ => {
         Course.DeleteAll();
         Dictionary<string, object> model = ViewRoutes.IndexView();
         return View["index.cshtml", model];
       };
+      ////
+      //Add Course
+      Post["/add_project"] = _ => {
+        string name = Request.Form["name"];
+        DateTime startDate = Request.Form["date"];
+        Project project = new Project(name, startDate);
+        project.Save();
+
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
+      // Delete One course
+      Post["/delete_project"] = _ => {
+        string idString = Request.Form["id"];
+        int id = Int32.Parse(idString);
+        Project project = Project.Find(id);
+        project.Delete();
+
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
+      //DELETE all course *not working
+      Post["/delete_all_project"] = _ => {
+        Project.DeleteAll();
+        Dictionary<string, object> model = ViewRoutes.IndexView();
+        return View["index.cshtml", model];
+      };
+
 
       //////////////////////////////////////////////////////
       /// Goes student.cshtml

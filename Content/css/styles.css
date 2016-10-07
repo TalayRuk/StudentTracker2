@@ -32,10 +32,30 @@ section.module.content{
 
 .picture {
   width:100px;
+  border-radius:10px;
 }
 
 .container2{
   width:400px;
+}
+.jb-button-style {
+margin-top: 20px;
+}
+.jb-button-style2 {
+margin-top: 75px;
+}
+
+.jbtitle {
+text-shadow:1px 1px 2px rgba(3,2,10,1);
+font-weight:normal;color:#000000;
+letter-spacing:2pt;
+word-spacing:11pt;
+font-size:56px;*
+font-family:tahoma, verdana, arial, sans-serif;
+line-height:1;
+padding-left: 100px;
+margin-top: 20px;
+margin-bottom: 20px;
 }
 
 
@@ -188,8 +208,8 @@ section.module.content{
 }
 
 .stupid td {
-	border-right: 1px solid #fff;
-	border-left: 1px solid #e8e8e8;
+	border-right: 0px solid #fff;
+	border-left: 0px solid #e8e8e8;
 	border-top: 1px solid #fff;
 	border-bottom: 1px solid #e8e8e8;
 	padding: 10px 15px;

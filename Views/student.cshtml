@@ -19,6 +19,7 @@
       </div>
     </section>
       <div class="container section-container">
+        <span class="jbtitle center-block">@Model["student"].GetFName() @Model["student"].GetLName()</span>
         <div class="row">
           <div class="col-md-6">
             <h2>Courses</h2>
@@ -27,7 +28,7 @@
                 <tr>
                   <th data-sort="string">Course Name</th>
                   <th data-sort="string">Course Status</th>
-                  <th> </th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -101,6 +102,9 @@
                 </form>
             </div>
           </div>
+          <div class="return">
+            <h2><a href="/"> Return to Homepage</a></h2>
+          </div>
         </div>
       </div>
       </section>
@@ -109,7 +113,6 @@
           <h1 id="brand"></h1>
         </div>
       </section>
-
       <section class="module content">
         <div class="container section-container">
           <div class="container2 center-block">
@@ -133,11 +136,8 @@
                 <input type="url" class="form-control" id="picture" name="picture" value='@Model["student"].GetPicture()'>
               </div>
                 <input type="hidden" class="form-control" id="startDate" name="startDate" value='@Model["student"].GetStartDate()'>
-              <button type="submit" class="btn btn-primary center-block">Update This Student</button>
+              <button type="submit" class="btn btn-primary center-block">Update Student</button>
             </form>
-            <div class="return">
-              <h2><a href="/"> Return Home</a></h2>
-            </div>
           </div>
         </div>
       </section>

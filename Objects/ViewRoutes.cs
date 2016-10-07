@@ -34,5 +34,20 @@ namespace Epicodus
       model.Add("student", student);
       return model;
     }
+
+    public static Dictionary<string, object> CourseView(Student student)
+    {
+      List<Project> allProjects = Project.GetAll();
+      List<Course> allCourses = Course.GetAll();
+      List<Course> courseList = student.GetCourses();
+      List<Project> projectList = student.GetProjects();
+      Dictionary<string, object> model = new Dictionary<string, object>{};
+      model.Add("allProjects", allProjects);
+      model.Add("allCourses", allCourses);
+      model.Add("courseList", courseList);
+      model.Add("projectList", projectList);
+      model.Add("student", student);
+      return model;
+    }
   }
 }

@@ -20,83 +20,68 @@
     </section>
     <section class="module content">
       <div class="container section-container">
-    <h1>@Model["course"].GetName()</h1>
-  </form>
-  <hr>
-  <form action='/update/@Model["course"].GetId()' method="post">
-    <div class="form-group">
-      <input type="hidden" name="_method" value="PATCH">
-      <input type="hidden" class="form-control" id="sdate" name="sdate" value='@Model["course"].GetStartDate()'>
-      <label for="name">Course:</label>
-      <input type="text" class="form-control" id="name" name="name" value='@Model["course"].GetName()'>
-    </div>
-    <div>
-      <div class="form-group">
-        <label for="name">Status:</label>
-        <select name="active" class="form-control">
-        <script type="text/javascript"> document.write( courseActiveSelected( @Model["course"].GetActive() ) );</script>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-default">Update This Course</button>
-  </form>
-  <div class="return">
-    <h2><a href="/"> Return to Homepage</a></h2>
-  </div>
-</section>
-
-
-
-
-
-
-
-  </section>
-
-
-    <section class="module parallax parallax-1">
-      <div class="container">
-        <h1 id="brand"></h1>
+        <h1>@Model["course"].GetName() <button class="slide4_open btn btn-primary">Update</button></h1>
+        <div id="slide4">
+          <h3 class="text-center">Update @Model["course"].GetName() </h3>
+          <form action='/update/@Model["course"].GetId()' method="post">
+            <div class="form-group">
+              <input type="hidden" name="_method" value="PATCH">
+              <input type="hidden" class="form-control" id="sdate" name="sdate" value='@Model["course"].GetStartDate()'>
+              <label for="name">Course:</label>
+              <input type="text" class="form-control" id="name" name="name" value='@Model["course"].GetName()'>
+            </div>
+            <div>
+              <div class="form-group">
+                <label for="name">Status:</label>
+                <select name="active" class="form-control">
+                  <script type="text/javascript"> document.write( courseActiveSelected( @Model["course"].GetActive() ) );</script>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-default jb-button-style center-block">Update This Course</button>
+          </form>
+        </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-5">
+          <h2>Students</h2>
+          <table class="stupid">
+            <thead>
+            </thead>
+            <tbody>
+              @foreach(var student in Model["studentList"] )
+              {
+                <tr>
+                  <td><a href='/student/@student.GetId()'>@student.GetFName() @student.GetLName()</a></td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        <!-- Add Student ------------------------------------------------------------------------------->
+        <form class="form-inline" action='/student/<1243>Model["student"].GetId()' method="post">
+          <input type="hidden" name="_method" value="PATCH">
+            <select name="id" class="form-control">
+              <1243>foreach(var acourse in Model["allCourses"] )
+              {
+                <option value="<1243>acourse.GetId()"><1243>acourse.GetName()</option>
+              }
+            </select>
+          <button type="submit" class="btn btn-primary">Add Student</button>
+          </form>
       </div>
-    </section>
-
-    </div>
-
-
-
-    <div class="container section-container">
-
-
-    <h/>
-    <h2>Students</h2>
-    <table class="stupid">
-      <thead>
-        <tr>
-          <th data-sort="string">Student Name</th>
-        </tr>
-      </thead>
-      <tbody>
-      <123456>foreach(var student in Model["studentList"] )
-      {
-        <tr>
-          <!-- <td><a href='/student/<123456>Model["studentList"].GetId()'><123456>Model["studentList"].GetName() </a></td> -->
-
-        </tr>
-      }
-      </tbody>
-    </table >
-    <br>
-
-    </div>
+      <div class="return">
+        <h2><a href="/">Back</a></h2>
+      </div>
     </section>
     <section class="module parallax parallax-1">
       <div class="container">
         <h1 id="brand"></h1>
       </div>
     </section>
-
-    <div>
-      <a href="/"> Return Home</a>
-    </div>
-
+    <section class="module parallax parallax-1">
+      <div class="container">
+        <h1 id="brand"></h1>
+      </div>
+    </section>
   </body>
 </html>

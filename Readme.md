@@ -1,3 +1,100 @@
+# _EPICODUS STUDENT TRACKER_
+
+#### _Create a web app for John using database to store list of students and their courses._
+
+#### By *Jonathan Buchner, Ian Wilcox, Vichitra Pool, Russ Vetsper, and Rouz Majlessi*
+
+## Description
+
+_Epicodus's instructor (John) can add student, course, and their project to the list. The ability to add course to an individual student and add student to each course. The ability to view each student's project._
+
+
+## Specs
+
+| Behavior     | Input Example  |Output Example  |
+| ------------- |:-------------:| -----:|
+|Able to add student's first & last name, email, picture, their start date | Note | Note Pool v@me.com, picture of Note, Note's stardate.
+|Able to add course's name, stat date, and active(0 = completed, 1 = current, 2 = future)
+|GetAll() return all rows present in the database |2 student instances | list containing 2 students
+|GetAll().Count return Number of rows in database | no input | database empty
+|Override bool Equal function return 2 same inputs with different Id | 2 same student instances | list containing 2 student's names
+|Save() return input save to the list | new student instance | list containing new student
+|DeleteOne() | Delete one instance using the specific id from that database | 1 student instance | that specific student is deleted from database.
+|DeleteAll() clear out all rows in database | 2 student instances | none
+|Find() return specific row from database | Joe | found Joe
+|UpdateAll() to edit specific student using the id and can update single or all properties from the prepopulated form from  that student's database. | edit Bill to Billy Ray  | Billy  Ray
+|*Many-to-many relationship set up by adding a join table
+|AddCourse(newCourse) using student id and class id to add all properties of a course to that student in the join table students_courses. Add new course to a student | student: Ian, Course: Intro | Ian takes Intro class.
+|GetCourse() return List of courses that the specific student takes | click on Jon | show the list of courses that Jon takes.
+|DeleteCourse(int id) to be able to delete a course from the student using the id | click Jon's Intro course | Intro course is deleted from Jon course's list.
+|AddStudent(newStudent) the course itself can add the list of student to it | click on Intro to add Jon | Intro course has Jon listed in it.
+|GetStudent() return list of students for the specific course | click on Intro | show list of students for the Intro course.
+|DeleteStudent() to delete a student from the course | click on Jon from the Intro course's student's list | Jon is deleted from the students' list in the Intro course.
+|Test **Spec to make sure all the methods from all the table are functioning.
+|HomeModule.cs : add RESTful Route
+|*CRUD functionality for each class been built in Nancy
+|*RESTful routes used in Nancy
+
+|Create epicodus Database for students table, courses table, projects table, students_courses table, scg table. and create epicodus_test database for test.
+## Setup/Installation
+#### Files can be cloned from https://github.com/iantwilcox91/StudentTracker.git and run in a browser (requires a server environment).
+
+#### Using Mono in the root directory, type the following at the command prompt:
+
+##### To install dependencies:
+
+\>dnu restore
+
+#### To use the database, in SQLCMD:
+
+\>CREATE DATABASE epicodus;
+
+\>GO
+
+\>USE epicodus;
+
+\>GO
+
+\>CREATE TABLE students (id INT IDENTITY (1,1), fname VARCHAR(255), lname VARCHAR(255), , email VARCHAR(255), picture VARCHAR(255), sdate DATETIME);
+
+\>GO
+
+\>CREATE TABLE courses (id INT IDENTITY (1,1), name VARCHAR(255), sdate DATE, active INT);
+
+\>GO
+
+\>CREATE TABLE projects (id INT IDENTITY (1,1), name VARCHAR(255), date DATE);
+
+\>GO
+
+\>CREATE TABLE courses (id INT IDENTITY (1,1), student_id INT, class_id INT);
+
+\>GO
+
+\>CREATE TABLE courses (id INT IDENTITY (1,1), student_courses_id INT, projects_id INT, grade VARCHAR(255));
+
+\>GO
+
+#### To run the local server:
+
+\>dnx kestrel
+
+#### Copy: http://localhost:5004 in your browser.
+
+## Support and contact details
+
+Please contact the authors if you have any questions or comments.
+
+## Technologies Used
+
+C#, Nancy, Razor, Xunit, Database and cshtml.
+
+### License
+
+Copyright (c) 2016  
+
+This software is licensed under the MIT license.
+
 
 
 ###### Story Board Objectives
@@ -202,7 +299,7 @@ project.Save();
 //ACT
 Project.Add(Student,Course, "Grade");
 
-public void Add(Student student, Course course, string grade)
+<!-- public void Add(Student student, Course course, string grade)
 {
 OpenSQLCONN
 
@@ -213,9 +310,4 @@ WHERE students.id = 118;
 
 sql parameter student_id
 sql parameter course_ID
-WHile()
-
-
-ID
-
-INSERT INTO SCG (student
+WHile() -->

@@ -26,8 +26,7 @@
       <table class="stupid">
         <thead>
           <th>Picture</th>
-          <th data-sort="string">First Name</th>
-          <th data-sort="string">Last Name</th>
+          <th data-sort="string">Name</th>
           <th data-sort="string">Email</th>
           <th data-sort="string">Start Date</th>
           <th>Delete</th>
@@ -38,8 +37,7 @@
           {
             <tr>
               <td ><img class="picture" src="@student.GetPicture()"></td>
-              <td ><a href="student/@student.GetId()">@student.GetFName()</a></td>
-              <td >@student.GetLName()</td>
+              <td ><a href="student/@student.GetId()">@student.GetFName() @student.GetLName()</a></td>
               <td >@student.GetEmail()</td>
               <td >@student.GetStartDate()</td>
               <td>

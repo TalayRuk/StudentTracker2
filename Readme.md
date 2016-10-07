@@ -109,14 +109,57 @@ CREATE TABLE passwords (
   PRIMARY KEY (id)
 );
 
+
+INSERT INTO courses (name, sdate, active) VALUES ('Intro to programming (Aug)','2016-08-01','0');
+INSERT INTO courses (name, sdate, active) VALUES ('C# (Sep)','2016-09-06','1');
+INSERT INTO courses (name, sdate, active) VALUES ('JavaScript (Oct)','2016-10-11','2');
+INSERT INTO courses (name, sdate, active) VALUES ('.Net (Nov)','2016-11-16','2');
+INSERT INTO courses (name, sdate, active) VALUES ('Internship ','2017-01-03','2');
+INSERT INTO courses (name, sdate, active) VALUES ('Intro to programming (June)','2016-06-22','0');
+INSERT INTO courses (name, sdate, active) VALUES ('C# (July)','2016-07-28','0');
+INSERT INTO courses (name, sdate, active) VALUES ('JavaScript (Aug)','2016-08-29','0');
+INSERT INTO courses (name, sdate, active) VALUES ('.Net (Sep)','2016-09-22','1');
+
+Insert into projects (name, date) VALUES ('Portfolio', '2016-08-05');
+Insert into projects (name, date) VALUES ('Choose your track', '2016-08-13' );
+Insert into projects (name, date) VALUES ('Ping Pong', '2016-08-21' );
+Insert into projects (name, date) VALUES ('Pizza', '2016-08-28' );
+Insert into projects (name, date) VALUES ('Address Book', '2016-09-9' );
+Insert into projects (name, date) VALUES ('Word Counter', '2016-09-16' );
+Insert into projects (name, date) VALUES ('Hair Salon', '2016-09-23' );
+Insert into projects (name, date) VALUES ('Band Tracker', '2016-09-30' );
+
+INSERT INTO students (fname, lname, email, picture, sdate)
+VALUES ('Jonathan', 'Buchner', 'me@jonathanbuchner.com', 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAQhAAAAJDcyMzkwNzQwLTgwOGYtNDZhZS1iNjQxLTY4NDA4NTQyYjJiMA.jpg', '2016-08-01' );
+INSERT INTO students (fname, lname, email, picture, sdate)
+VALUES ('Note', 'Vichitra', 'Not-Available', 'https://avatars2.githubusercontent.com/u/19232053?v=3&s=400', '2016-08-01' );
+INSERT INTO students (fname, lname, email, picture, sdate)
+VALUES ('Ian', 'Wilcox', 'Not-Available', 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg', '2016-08-01' );
+INSERT INTO students (fname, lname, email, picture, sdate)
+VALUES ('Russ', 'Vetsper', 'Not Available', 'https://avatars.slack-edge.com/2016-06-14/50984628224_5859e6967bca456045be_512.png', '2016-08-01' );
+INSERT INTO students (fname, lname, email, picture, sdate)
+VALUES ('Rouz', 'Majlessi', 'Not Available', 'https://pbs.twimg.com/profile_images/3748163517/30900ad24d146fc561bb65c6f96a490e_400x400.jpeg', '2016-06-23' );
+
+
+INSERT INTO students (fname, lname, email, picture, sdate)
+VALUES ('Yi', 'Chiang', 'Not Available', 'https://avatars0.githubusercontent.com/u/17328624?v=3&s=466', '2016-06-23' );
+INSERT INTO students (fname, lname, email, picture, sdate)
+VALUES ('Steven', 'Tran', 'Not Available', 'https://avatars0.githubusercontent.com/u/19356994?v=3&s=400', '2016-06-23' );
+INSERT INTO students (fname, lname, email, picture, sdate)
+VALUES ('Joel', 'Wage',  'Not Available', 'http://www.villagetheatre.org/Graphics/kidstage/Instructors/Joel-Waage.jpg', '2016-06-23' );
+INSERT INTO students (fname, lname, email, picture, sdate)
+VALUES ('Russ', 'Davies', 'No', 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg', '2016-06-23' );
+INSERT INTO students (fname, lname, email, picture, sdate)
+VALUES ('Andrew', 'Niekamp',  'Not Available', 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAICAAAAJDVlYTVlNDU4LTIyMTQtNDczZi04NmIzLTdmMTkzZmY3ZTQ4NQ.jpg', '2016-06-23' );
+
 -- ---
 -- Foreign Keys
 -- ---
 
-ALTER TABLE students_courses ADD FOREIGN KEY (student_id) REFERENCES students (id);
-ALTER TABLE students_courses ADD FOREIGN KEY (class_id) REFERENCES courses (id);
-ALTER TABLE scg ADD FOREIGN KEY (students_courses_id) REFERENCES students_courses (id);
-ALTER TABLE scg ADD FOREIGN KEY (projects_id) REFERENCES projects (id);
+--ALTER TABLE students_courses ADD FOREIGN KEY (student_id) REFERENCES students (id);
+--ALTER TABLE students_courses ADD FOREIGN KEY (class_id) REFERENCES courses (id);
+--ALTER TABLE scg ADD FOREIGN KEY (students_courses_id) REFERENCES students_courses (id);
+--ALTER TABLE scg ADD FOREIGN KEY (projects_id) REFERENCES projects (id);
 
 -- ---
 -- Table Properties

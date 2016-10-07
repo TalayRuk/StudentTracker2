@@ -1,3 +1,10 @@
+function courseActive(int){
+  var phrase = "Error";
+  if (int == 0 ){phrase = "Complete"; }
+  if (int == 1){phrase = "Current";}
+  if (int == 2){phrase = "Future";}
+  return phrase;
+}
 
 
 $(function() {

@@ -112,14 +112,7 @@ namespace Epicodus
       Get["/student/{id}"] = parameters => {
           Student student = Student.Find(parameters.id);
 
-          List<Course> allCourses = Course.GetAll();
-          List<Course> courseList = student.GetCourses();
-          List<Project> projectList = student.GetProjects();
-          Dictionary<string, object> model = new Dictionary<string, object>{};
-          model.Add("allCourses", allCourses);
-          model.Add("courseList", courseList);
-          model.Add("projectList", projectList);
-          model.Add("student", student);
+          Dictionary<string, object> model = ViewRoutes.StudentsView(student);
           return View["student.cshtml", model];
       };
 
@@ -133,14 +126,8 @@ namespace Epicodus
         DateTime startDate = Request.Form["startDate"];
         Student newStudent = new Student (fname, lname, email, picture, startDate);
         student.UpdateAll(newStudent);
-        List<Course> allCourses = Course.GetAll();
-        List<Course> courseList = student.GetCourses();
-        List<Project> projectList = student.GetProjects();
-        Dictionary<string, object> model = new Dictionary<string, object>{};
-        model.Add("allCourses", allCourses);
-        model.Add("courseList", courseList);
-        model.Add("projectList", projectList);
-        model.Add("student", student);
+
+        Dictionary<string, object> model = ViewRoutes.StudentsView(student);
         return View["student.cshtml", model];
       };
 
@@ -152,14 +139,7 @@ namespace Epicodus
         Course course = Course.Find(id);
         student.AddCourse(course);
 
-        List<Course> allCourses = Course.GetAll();
-        List<Course> courseList = student.GetCourses();
-        List<Project> projectList = student.GetProjects();
-        Dictionary<string, object> model = new Dictionary<string, object>{};
-        model.Add("allCourses", allCourses);
-        model.Add("courseList", courseList);
-        model.Add("projectList", projectList);
-        model.Add("student", student);
+        Dictionary<string, object> model = ViewRoutes.StudentsView(student);
         return View["student.cshtml", model];
       };
 
@@ -171,14 +151,7 @@ namespace Epicodus
         Console.WriteLine("hey");
 
 
-        List<Course> allCourses = Course.GetAll();
-        List<Course> courseList = student.GetCourses();
-        List<Project> projectList = student.GetProjects();
-        Dictionary<string, object> model = new Dictionary<string, object>{};
-        model.Add("allCourses", allCourses);
-        model.Add("courseList", courseList);
-        model.Add("projectList", projectList);
-        model.Add("student", student);
+        Dictionary<string, object> model = ViewRoutes.StudentsView(student);
         return View["student.cshtml", model];
       };
 

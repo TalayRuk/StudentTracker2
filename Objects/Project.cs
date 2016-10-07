@@ -11,13 +11,15 @@ namespace Epicodus
     private string _name;
     private DateTime _date;
     private string _grade;
+    private string _fullname;
 
-    public Project(string name, DateTime date, int id = 0, string grade = "Null")
+    public Project(string name, DateTime date, int id = 0, string grade = "Null", string fullname = "Null")
     {
       _id = id;
       _name = name;
       _date = date;
       _grade = grade;
+      _fullname = fullname;
     }
     public int GetId()
     {
@@ -34,6 +36,10 @@ namespace Epicodus
     public string GetGrade()
     {
       return _grade;
+    }
+    public string FullName()
+    {
+      return _fullname;
     }
     public override bool Equals(System.Object otherProject)
     {

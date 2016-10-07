@@ -218,11 +218,26 @@ namespace Epicodus
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      // string query =  "DELETEE FROM scg WHERE SCG ";
-      // SqlCommand cmd1 = new SqlCommand(query, conn);
-      // cmd1.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
-      // cmd1.ExecuteNonQuery();
-      //
+      string query2 = "SELECT scg.students_courses_id FROM STUDENTS JOIN STUDENTS_COURSES ON STUDENTS.id = STUDENTS_COURSES.student_id JOIN COURSES ON COURSES.id = STUDENTS_COURSES.class_id JOIN SCG ON SCG.students_courses_id = STUDENTS_COURSES.id JOIN PROJECTS on PROJECTS.id = SCG.projects_id WHERE student_id = @studentId";
+      SqlCommand cmd2 = new SqlCommand(query2, conn);
+      cmd2.Parameters.Add(new SqlParameter("@studentId", this.GetId() ) );
+      SqlDataReader rdr = cmd2.ExecuteReader();
+
+      int students_courses_id = 0;
+      while( rdr.Read() )
+      {
+          students_courses_id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      string query3 = "DELETE FROM SCG where students_courses_id = @students_courses_id;";
+      SqlCommand cmd3 = new SqlCommand(query3, conn);
+      cmd3.Parameters.Add(new SqlParameter("@students_courses_id", students_courses_id ) );
+      cmd3.ExecuteNonQuery();
+
       SqlCommand cmd1 = new SqlCommand("DELETE FROM students_courses WHERE student_id = @studentId;", conn);
       cmd1.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
       cmd1.ExecuteNonQuery();
@@ -291,6 +306,27 @@ namespace Epicodus
       SqlConnection conn = DB.Connection();
       conn.Open();
 
+      string query2 = "SELECT scg.students_courses_id FROM STUDENTS JOIN STUDENTS_COURSES ON STUDENTS.id = STUDENTS_COURSES.student_id JOIN COURSES ON COURSES.id = STUDENTS_COURSES.class_id JOIN SCG ON SCG.students_courses_id = STUDENTS_COURSES.id JOIN PROJECTS on PROJECTS.id = SCG.projects_id WHERE student_id = @studentId AND class_id = @classId;";
+      SqlCommand cmd2 = new SqlCommand(query2, conn);
+      cmd2.Parameters.Add(new SqlParameter("@studentId", this.GetId() ) );
+      cmd2.Parameters.Add(new SqlParameter("@classId", classId));
+      SqlDataReader rdr = cmd2.ExecuteReader();
+
+      int students_courses_id = 0;
+      while( rdr.Read() )
+      {
+          students_courses_id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      string query3 = "DELETE FROM SCG WHERE students_courses_id = @students_courses_id;";
+      SqlCommand cmd3 = new SqlCommand(query3, conn);
+      cmd3.Parameters.Add(new SqlParameter("@students_courses_id", students_courses_id ) );
+      cmd3.ExecuteNonQuery();
+
       SqlCommand cmd = new SqlCommand("DELETE FROM students_courses WHERE student_id = @studentId AND class_id = @classId;", conn);
 
       cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId() ) );
@@ -335,35 +371,6 @@ namespace Epicodus
       }
       return projectList;
     }
-
-    public string GetProjectGrade()
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-
-      SqlCommand cmd = new SqlCommand("SELECT scg.grade FROM STUDENTS JOIN STUDENTS_COURSES ON STUDENTS.id = STUDENTS_COURSES.student_id JOIN COURSES ON COURSES.id = STUDENTS_COURSES.class_id JOIN SCG ON SCG.students_courses_id = STUDENTS_COURSES.id JOIN PROJECTS on PROJECTS.id = SCG.projects_id WHERE students.id = @studentId;", conn);
-
-      cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId())); //*when error cannot convert from 'int' to 'System.Data.SqlClient.SqlConnection b/c**SqlParameter spell wrong!
-      SqlDataReader rdr = cmd.ExecuteReader();
-
-      string grade = null;
-
-      while ( rdr.Read() )
-      {
-        grade = rdr.GetString(0);
-      }
-      if (rdr != null)
-      {
-        rdr.Close();
-      }
-
-      if(conn != null)
-      {
-        conn.Close();
-      }
-      return grade;
-    }
-
 
     public static void DeleteAll()
     {

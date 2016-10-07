@@ -44,7 +44,7 @@
       <hr>
         <!--Student ------------------------------------------------------------------------------->
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-4">
           <h2>Students</h2>
           <table class="stupid">
             <thead>
@@ -77,20 +77,22 @@
           </form>
       </div>
       <!-- Project ------------------------------------------------------------------------------->
-      <div class="col-md-7">
+      <div class="col-md-8">
         <h2>Projects</h2>
         <table class="stupid">
           <thead>
             <tr>
-              <th data-sort="string">Course Name</th>
+              <th data-sort="string">Student</th>
+              <th data-sort="string">Project</th>
               <th data-sort="string">Course Date</th>
               <th data-sort="string">Course Date</th>
             </tr>
           </thead>
           <tbody>
-            @foreach(var project in Model["projectList"] )
+            @foreach(var project in Model["projectListGrade"] )
             {
               <tr>
+                <td>@project.FullName()</td>
                 <td>@project.GetName()</td>
                 <td>@project.GetDate()</td>
                 <td>@project.GetGrade()</td>
@@ -99,17 +101,17 @@
           </tbody>
         </table >
         <br><br>
-        <!-- <form class="form-inline" action='/update_courses/@Model["student"].GetId()' method="post">
+        <!-- <form class="form-inline" action='/update_courses/<1234>Model["student"].GetId()' method="post">
             <select name="courseid" class="form-control">
-              @foreach(var course in Model["courseList"] )
+              <1234>foreach(var course in Model["courseList"] )
               {
-                <option value="@course.GetId()">@course.GetName()</option>
+                <option value="<1234>course.GetId()"><1234>course.GetName()</option>
               }
             </select>
             <select name="projectid" class="form-control">
-              @foreach(var project in Model["allProjects"] )
+              <1234>foreach(var project in Model["allProjects"] )
               {
-                <option value="@project.GetId()">@project.GetName()</option>
+                <option value="<1234>project.GetId()"><1234>project.GetName()</option>
               }
             </select>
             <select name="grade" class="form-control">
@@ -124,6 +126,11 @@
     <div class="return">
       <h2><a href="/">Back</a></h2>
     </div>
+    </section>
+    <section class="module parallax parallax-1">
+      <div class="container">
+        <h1 id="brand"></h1>
+      </div>
     </section>
     <section class="module parallax parallax-1">
       <div class="container">

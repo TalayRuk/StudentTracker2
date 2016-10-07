@@ -40,13 +40,13 @@ namespace Epicodus
       List<Project> projectList = Project.GetAll();
       List<Student> allStudents = Student.GetAll();
       List<Student> studentList = course.GetStudents();
-      List<Project> projectList = student.GetProjects();
+      List<Project> projectListGrade = course.GetProjects();
       Dictionary<string, object> model = new Dictionary<string, object>{};
       model.Add("allStudents", allStudents);
       model.Add("studentList", studentList);
       model.Add("course", course);
       model.Add("projectList", projectList);
-      model.Add("projectList", projectList);
+      model.Add("projectListGrade", projectListGrade);
       return model;
     }
   }

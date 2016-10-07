@@ -155,13 +155,6 @@ namespace Epicodus
         return View["student.cshtml", model];
       };
 
-      // Basic Link GetAll
-
-      // link :homepage, courseslist, delete, project list?
-      //UpdateAll student
-      // add course to student
-      //delete course from student
-      //add project to student ????
       //////////////////////////////////////////////////////
       /// Goes Course.cshtml
       /////////////////////////////////////////////////////

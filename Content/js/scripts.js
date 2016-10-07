@@ -6,6 +6,18 @@ function courseActive(int){
   return phrase;
 }
 
+function courseActiveSelected(int){
+  if (int == 0 ){var selected0 = "selected"; }
+  if (int == 1){var selected1 = "selected";}
+  if (int == 2){var selected2 = "selected";}
+  var phrase =" " +
+  '<option value="0" '+selected0+'>Completed</option>' +
+  '<option value="1" '+selected1+'>Current</option>' +
+  '<option value="2" '+selected2+'>Future</option>';
+  console.log(phrase);
+  return phrase;
+}
+
 
 $(function() {
 

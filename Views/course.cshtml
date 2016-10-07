@@ -2,17 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>This Course</title>
-  </head>
-  <body>
+    <title>This Student</title>
     <link rel="stylesheet" href="https://bootswatch.com/readable/bootstrap.min.css" >
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Noto+Sans'  type='text/css'>
     <link rel="stylesheet" href="../Content/css/styles.css" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
-    <script src="../Content/js/stupidTable.js"></script>
-    <script src="Content/js/scripts.js"></script>
+    <script src="../../Content/js/stupidTable.js"></script>
+    <script src="../../Content/js/scripts.js"></script>
   </head>
   <body>
     <section class="module parallax parallax-1">
@@ -20,31 +18,24 @@
         <h1 id="brand"></h1>
       </div>
     </section>
-
     <section class="module content">
       <div class="container section-container">
-
     <h1>@Model["course"].GetName()</h1>
-
-
-
-
-
   </form>
   <hr>
-  <!-- <form class="form-inline" action='/update/@Model["course"].GetId()' method="post"> -->
+  <form action='/update/@Model["course"].GetId()' method="post">
     <div class="form-group">
       <input type="hidden" name="_method" value="PATCH">
-      <label for="name">First Name:</label>
+      <input type="hidden" class="form-control" id="sdate" name="sdate" value='@Model["course"].GetStartDate()'>
+      <label for="name">Course:</label>
       <input type="text" class="form-control" id="name" name="name" value='@Model["course"].GetName()'>
     </div>
     <div>
-      <label for="sdate">Start Date:</label>
-      <input type="date" class="form-control" id="sdate" name="sdate" value='@Model["course"].GetStartDate()'>
-    </div>
-    <div>
-      <label for="active">Active Status:</label>
-      <input type="text" class="form-control" id="active" name="active" value='@Model["course"].GetActive()'>
+      <div class="form-group">
+        <label for="name">Status:</label>
+        <select name="active" class="form-control">
+        <script type="text/javascript"> document.write( courseActiveSelected( @Model["course"].GetActive() ) );</script>
+      </select>
     </div>
     <button type="submit" class="btn btn-default">Update This Course</button>
   </form>
@@ -84,10 +75,10 @@
         </tr>
       </thead>
       <tbody>
-      @foreach(var student in Model["studentList"] )
+      <123456>foreach(var student in Model["studentList"] )
       {
         <tr>
-          <td><a href='/student/@Model["studentList"].GetId()'>@Model["studentList"].GetName() </a></td>
+          <!-- <td><a href='/student/<123456>Model["studentList"].GetId()'><123456>Model["studentList"].GetName() </a></td> -->
 
         </tr>
       }

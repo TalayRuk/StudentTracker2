@@ -192,7 +192,7 @@ namespace Epicodus
       cmd.Parameters.Add(new SqlParameter("@email", currentStudent.GetEmail()));
       cmd.Parameters.Add(new SqlParameter("@picture", currentStudent.GetPicture()));
       cmd.Parameters.Add(new SqlParameter("@sDate", currentStudent.GetStartDate()));
-      cmd.Parameters.Add(new SqlParameter("@studentId", currentStudent.GetId()));
+      cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
       SqlDataReader rdr = cmd.ExecuteReader();
 
       while(rdr.Read())

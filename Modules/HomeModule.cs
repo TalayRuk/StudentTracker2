@@ -132,12 +132,12 @@ namespace Epicodus
         string picture = Request.Form["picture"];
         DateTime startDate = Request.Form["startDate"];
         Student newStudent = new Student (fname, lname, email, picture, startDate);
-        newStudent.Save();
         student.UpdateAll(newStudent);
         List<Course> allCourses = Course.GetAll();
         List<Course> courseList = student.GetCourses();
         List<Project> projectList = student.GetProjects();
         Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("allCourses", allCourses);
         model.Add("courseList", courseList);
         model.Add("projectList", projectList);
         model.Add("student", student);

@@ -149,6 +149,11 @@ namespace Epicodus
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
+
+      SqlCommand cmd1 = new SqlCommand("DELETE FROM students_courses WHERE class_id = @courseId;", conn);
+      cmd1.Parameters.Add(new SqlParameter("@courseId", this.GetId() ));
+      cmd1.ExecuteNonQuery();
+
       SqlCommand cmd = new SqlCommand("DELETE FROM courses WHERE id = @courseId;", conn);
       cmd.Parameters.Add(new SqlParameter("@courseId", this.GetId()));
 

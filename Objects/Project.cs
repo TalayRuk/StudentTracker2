@@ -153,8 +153,8 @@ namespace Epicodus
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM projects WHERE id = @id;" , conn);
 
+      SqlCommand cmd = new SqlCommand("DELETE FROM projects WHERE id = @id;" , conn);
       cmd.Parameters.Add(new SqlParameter("@id", this.GetId() ) );
       cmd.ExecuteNonQuery();
 
@@ -263,7 +263,7 @@ namespace Epicodus
 //         dictionary.Add("students_id",students.sdate);
 //
 //       }
-    // 
+    //
     //   if (rdr != null)
     //   {
     //     rdr.Close();

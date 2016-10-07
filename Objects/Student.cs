@@ -223,9 +223,9 @@ namespace Epicodus
       // cmd1.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
       // cmd1.ExecuteNonQuery();
       //
-      // SqlCommand cmd1 = new SqlCommand("DELETE FROM students_courses WHERE id = @studentId;", conn);
-      // cmd1.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
-      // cmd1.ExecuteNonQuery();
+      SqlCommand cmd1 = new SqlCommand("DELETE FROM students_courses WHERE student_id = @studentId;", conn);
+      cmd1.Parameters.Add(new SqlParameter("@studentId", this.GetId()));
+      cmd1.ExecuteNonQuery();
 
       SqlCommand cmd = new SqlCommand("DELETE FROM students WHERE id = @studentId;", conn);
       cmd.Parameters.Add(new SqlParameter("@studentId", this.GetId()));

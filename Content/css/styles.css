@@ -34,6 +34,10 @@ section.module.content{
   width:100px;
   border-radius:10px;
 }
+.pictureOnStudentPage {
+  width:150px;
+  border-radius:20px;
+}
 
 .container2{
   width:400px;
@@ -50,13 +54,38 @@ text-shadow:1px 1px 2px rgba(3,2,10,1);
 font-weight:normal;color:#000000;
 letter-spacing:2pt;
 word-spacing:11pt;
-font-size:56px;*
+font-size:56px;
 font-family:tahoma, verdana, arial, sans-serif;
 line-height:1;
-padding-left: 100px;
-margin-top: 20px;
-margin-bottom: 20px;
+margin-top: 75px;
 }
+
+.jb-title-subtitle {
+  margin-bottom: 50px;
+  margin-top: -50px;
+  margin-left: 90px;
+}
+
+.epicodusTitle {
+text-shadow:3px 3px 9px rgba(3,2,10,1);font-weight:normal;
+color:#191A1C;
+letter-spacing:2pt;
+word-spacing:11pt;
+font-size:84px;
+text-align:left;
+font-family:tahoma, verdana, arial, sans-serif;
+line-height:1;
+margin-top: 10px;
+margin-bottom: 50px;
+}
+
+.jb-float-left {
+    float: left;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 40px;
+}
+
 
 
 /**********************************
@@ -148,6 +177,25 @@ margin-bottom: 20px;
   padding: 20px;
 }
 .popup_visible #slide2 {
+  transform: translateX(0) translateY(0);
+}
+
+#slide4_background, {
+  transition: all 0.3s 0.3s;
+}
+#slide4,
+#slide1_wrapper4 {
+  transition: all 0.3s ease-out;
+}
+#slide4 {
+  transform: translateX(0) translateY(-40%);
+  background-color: rgba(255,255,255,1);
+  border-radius: 40px;
+  margin: 100px;
+  padding: 20px;
+  width: 550px;
+}
+.popup_visible #slide4 {
   transform: translateX(0) translateY(0);
 }
 /**********************************

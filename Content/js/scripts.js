@@ -16,7 +16,6 @@ $(function() {
     color: 'white',
     opacity: .8,
     transition: '0.5s',
-
   });
 
   //For popup slider
@@ -39,6 +38,15 @@ $(function() {
 
   //For course popup slider
   $('#slide2').popup({
+  outline: false, // optional
+  focusdelay: 400, // optional
+  vertical: 'top', //optional
+  scrolllock: true,
+  blur:true
+  });
+
+  //For course popup slider
+  $('#slide4').popup({
   outline: false, // optional
   focusdelay: 400, // optional
   vertical: 'top', //optional

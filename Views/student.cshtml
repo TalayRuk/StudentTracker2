@@ -19,7 +19,37 @@
       </div>
     </section>
       <div class="container section-container">
-        <span class="jbtitle center-block">@Model["student"].GetFName() @Model["student"].GetLName()</span>
+        <div class="jb-float-left">
+          <img class="pictureOnStudentPage"src="@Model["student"].GetPicture()" />
+        </div>
+        <div class="jbtitle center-block">
+            @Model["student"].GetFName() @Model["student"].GetLName()
+            <button class="slide4_open btn btn-primary">Update</button>
+            <div id="slide4">
+              <h3 class="text-center">Update @Model["student"].GetFName() @Model["student"].GetLName() </h3>
+              <form action='/update/@Model["student"].GetId()' method="post">
+                <div class="form-group">
+                  <label for="fname">First Name:</label>
+                  <input type="text" class="form-control" id="fname" name="fname" value='@Model["student"].GetFName()'>
+                </div>
+                <div class="form-group">
+                  <label for="lname">Last Name:</label>
+                  <input type="text" class="form-control" id="lname" name="lname" value='@Model["student"].GetLName()'>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" class="form-control" id="email" name="email" value='@Model["student"].GetEmail()'>
+                </div>
+                <div class="form-group">
+                  <label for="picture">Picture file name:</label>
+                  <input type="url" class="form-control" id="picture" name="picture" value='@Model["student"].GetPicture()'>
+                </div>
+                  <input type="hidden" class="form-control" id="startDate" name="startDate" value='@Model["student"].GetStartDate()'>
+                <button type="submit" class="btn btn-primary center-block">Update</button>
+              </form>
+            </div>
+        </div>
+        <hr>
         <div class="row">
           <div class="col-md-6">
             <h2>Courses</h2>
@@ -113,35 +143,5 @@
           <h1 id="brand"></h1>
         </div>
       </section>
-      <section class="module content">
-        <div class="container section-container">
-          <div class="container2 center-block">
-            <h3>Update @Model["student"].GetFName() @Model["student"].GetLName()</h3>
-            <hr>
-            <form action='/update/@Model["student"].GetId()' method="post">
-              <div class="form-group">
-                <label for="fname">First Name:</label>
-                <input type="text" class="form-control" id="fname" name="fname" value='@Model["student"].GetFName()'>
-              </div>
-              <div class="form-group">
-                <label for="lname">Last Name:</label>
-                <input type="text" class="form-control" id="lname" name="lname" value='@Model["student"].GetLName()'>
-              </div>
-              <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" value='@Model["student"].GetEmail()'>
-              </div>
-              <div class="form-group">
-                <label for="picture">Picture file name:</label>
-                <input type="url" class="form-control" id="picture" name="picture" value='@Model["student"].GetPicture()'>
-              </div>
-                <input type="hidden" class="form-control" id="startDate" name="startDate" value='@Model["student"].GetStartDate()'>
-              <button type="submit" class="btn btn-primary center-block">Update Student</button>
-            </form>
-          </div>
-        </div>
-      </section>
-      <br><br>
-
   </body>
 </html>

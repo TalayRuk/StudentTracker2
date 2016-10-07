@@ -42,6 +42,7 @@
           </form>
         </div>
       <hr>
+        <!--Student ------------------------------------------------------------------------------->
       <div class="row">
         <div class="col-md-5">
           <h2>Students</h2>
@@ -53,25 +54,76 @@
               {
                 <tr>
                   <td><a href='/student/@student.GetId()'>@student.GetFName() @student.GetLName()</a></td>
+                  <td>
+                    <form action='/course/@Model["course"].GetId()' method = "post">
+                      <input type="hidden" name="_method" value="DELETE">
+                      <input type="hidden" name="id" value="@student.GetId()">
+                      <button type="submit" class="glyphicon glyphicon-remove-circle "></button>
+                    </form>
+                  </td>
                 </tr>
               }
             </tbody>
           </table>
-        <!-- Add Student ------------------------------------------------------------------------------->
-        <form class="form-inline" action='/student/<1243>Model["student"].GetId()' method="post">
+        <form class="form-inline" action='/course/@Model["course"].GetId()' method="post">
           <input type="hidden" name="_method" value="PATCH">
             <select name="id" class="form-control">
-              <1243>foreach(var acourse in Model["allCourses"] )
+              @foreach(var student in Model["allStudents"] )
               {
-                <option value="<1243>acourse.GetId()"><1243>acourse.GetName()</option>
+                <option value="@student.GetId()">@student.GetFName() @student.GetLName()</option>
               }
             </select>
           <button type="submit" class="btn btn-primary">Add Student</button>
           </form>
       </div>
-      <div class="return">
-        <h2><a href="/">Back</a></h2>
+      <!-- Project ------------------------------------------------------------------------------->
+      <div class="col-md-7">
+        <h2>Projects</h2>
+        <table class="stupid">
+          <thead>
+            <tr>
+              <th data-sort="string">Course Name</th>
+              <th data-sort="string">Course Date</th>
+              <th data-sort="string">Course Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach(var project in Model["projectList"] )
+            {
+              <tr>
+                <td>@project.GetName()</td>
+                <td>@project.GetDate()</td>
+                <td>@project.GetGrade()</td>
+              </tr>
+            }
+          </tbody>
+        </table >
+        <br><br>
+        <!-- <form class="form-inline" action='/update_courses/@Model["student"].GetId()' method="post">
+            <select name="courseid" class="form-control">
+              @foreach(var course in Model["courseList"] )
+              {
+                <option value="@course.GetId()">@course.GetName()</option>
+              }
+            </select>
+            <select name="projectid" class="form-control">
+              @foreach(var project in Model["allProjects"] )
+              {
+                <option value="@project.GetId()">@project.GetName()</option>
+              }
+            </select>
+            <select name="grade" class="form-control">
+              <option>Always Meets Expectations</option>
+              <option>Often Meets Expectations</option>
+              <option>Does Note Meet Expectations</option>
+            </select>
+          <button type="submit" class="btn btn-primary jb-button-style center-block">Add Project</button>
+          </form> -->
       </div>
+  </div>
+    <div class="return">
+      <h2><a href="/">Back</a></h2>
+    </div>
     </section>
     <section class="module parallax parallax-1">
       <div class="container">

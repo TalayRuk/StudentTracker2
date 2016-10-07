@@ -219,12 +219,10 @@ namespace Epicodus
         this._startDate = rdr.GetDateTime(1);
         this._active = rdr.GetInt32(2);
       }
-
       if (rdr != null)
       {
         rdr.Close();
       }
-
       if (conn != null)
       {
         conn.Close();
@@ -242,9 +240,7 @@ namespace Epicodus
       cmd.Parameters.Add(new SqlParameter("@studentId", newStudent.GetId()));
       cmd.ExecuteNonQuery();
 
-
       conn.Close();
-
     }
 
     public List<Student> GetStudents()

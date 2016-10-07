@@ -131,6 +131,26 @@ namespace Epicodus
         return View["student.cshtml", model];
       };
 
+      Post["/update_courses/{id}"] = parameters => {
+        Student student = Student.Find(parameters.id);
+
+
+        string courseidString = Request.Form["courseid"];
+        int courseidStringid = Int32.Parse(courseidString);
+
+        string idString = Request.Form["projectid"];
+        int projectId = Int32.Parse(idString);
+        Project project = Project.Find(projectId);
+
+        string grade = Request.Form["grade"];
+
+        project.AddCourseStudent(student.GetId(),courseidStringid,grade);
+
+
+        Dictionary<string, object> model = ViewRoutes.StudentsView(student);
+        return View["student.cshtml", model];
+      };
+
       Patch["/student/{id}"] = parameters => {
         Student student = Student.Find(parameters.id);
 
@@ -148,8 +168,6 @@ namespace Epicodus
         string idString = Request.Form["id"];
         int id = Int32.Parse(idString);
         student.DeleteCourse(id);
-        Console.WriteLine("hey");
-
 
         Dictionary<string, object> model = ViewRoutes.StudentsView(student);
         return View["student.cshtml", model];
@@ -160,14 +178,11 @@ namespace Epicodus
       /////////////////////////////////////////////////////
 
       Get["/course/{id}"] = parameters => {
-          Course course = Course.Find(parameters.id);
-          List<Student> studentList = course.GetStudents();
-          Dictionary<string, object> model = new Dictionary<string, object>{};
-          model.Add("studentList", studentList);
-          model.Add("course", course);
-          return View["course.cshtml", model];
-      };
+      Course course = Course.Find(parameters.id);
 
+      Dictionary<string, object> model = ViewRoutes.CourseView(course);
+      return View["course.cshtml", model];
+      };
 
       Patch["/update/{id}"] = parameters => {
         Course course = Course.Find(parameters.id);
@@ -175,41 +190,41 @@ namespace Epicodus
         int active = Request.Form["active"];
         DateTime sdate = Request.Form["sdate"];
         Course newCourse = new Course (name, sdate, active);
-        // newCourse.Save(); //?????
         course.Update(newCourse);
-        List<Student> studentList = course.GetStudents();
-        Dictionary<string, object> model = new Dictionary<string, object>{};
-        model.Add("studentList", studentList);
-        model.Add("course", course);
+
+        Dictionary<string, object> model = ViewRoutes.CourseView(course);
         return View["course.cshtml", model];
-    };
+      };
 
+      Patch["/course/{id}"] = parameters => {
+        Course course = Course.Find(parameters.id);
+        string idString = Request.Form["id"];
+        int id = Int32.Parse(idString);
+        Student student = Student.Find(id);
+        course.AddStudent(student);
 
-      //link to getall course, homepage, studentlist, delete, project?
-      //updateAll course
-      //delete student from course
-      //add project to course???
-      //list project
+        Dictionary<string, object> model = ViewRoutes.CourseView(course);
+        return View["course.cshtml", model];
+      };
 
-      ////////////////////////////////////
-      //// Project.cshtml
-      // //////////////
-      //project list
-      //add project
-      // select project
+      Delete["/course/{id}"] = parameters => {
+          Course course = Course.Find(parameters.id);
 
+          string idString = Request.Form["id"];
+          int id = Int32.Parse(idString);
+          course.DeleteStudent(id);
+
+          Dictionary<string, object> model = ViewRoutes.CourseView(course);
+          return View["course.cshtml", model];
+        };
+
+        Patch["/add_project/{id}"] = parameters => {
+          Course course = Course.Find(parameters.id);
+
+          Dictionary<string, object> model = ViewRoutes.CourseView(course);
+          return View["course.cshtml", model];
+        };
 
     }
   }
 }
-
-
-
-//For updateAll ***note from John***
-// FORM ROUTE->
-//
-// FORM populated with Student Data:
-// <input type="text" value="@Model.GetFName()"></input>
-//
-// POST ROUTE to SUCCESS PAGE->
-// Student EditedStudent = new Student(Request.Form["fname"], )

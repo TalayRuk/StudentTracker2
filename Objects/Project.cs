@@ -10,12 +10,14 @@ namespace Epicodus
     private int _id;
     private string _name;
     private DateTime _date;
+    private string _grade;
 
-    public Project(string name, DateTime date, int id = 0)
+    public Project(string name, DateTime date, int id = 0, string grade = "Null")
     {
       _id = id;
       _name = name;
       _date = date;
+      _grade = grade;
     }
     public int GetId()
     {
@@ -29,7 +31,10 @@ namespace Epicodus
     {
       return _date;
     }
-
+    public string GetGrade()
+    {
+      return _grade;
+    }
     public override bool Equals(System.Object otherProject)
     {
       if (!(otherProject is Project))
@@ -140,6 +145,12 @@ namespace Epicodus
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
+
+      SqlCommand cmd2 = new SqlCommand("DELETE FROM scg;", conn);
+      cmd2.ExecuteNonQuery();
+
+      SqlCommand cmd1 = new SqlCommand("DELETE FROM students_courses;", conn);
+      cmd1.ExecuteNonQuery();
 
       SqlCommand cmd = new SqlCommand("DELETE FROM projects;", conn);
       cmd.ExecuteNonQuery();
